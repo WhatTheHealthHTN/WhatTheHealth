@@ -1,17 +1,18 @@
 import { NextPage } from "next";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import { MdDashboard, MdNotificationsActive } from 'react-icons/md'
 import { BsShieldCheck, BsPersonFill, BsChevronDown } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiBarChart2Fill } from 'react-icons/ri'
 import { FaHistory } from 'react-icons/fa'
 import { ImExit, ImPlus } from 'react-icons/im'
-import { InputGroup, InputLeftElement, Input, Button, Avatar, WrapItem, Box, MenuButton, Menu, MenuItem, MenuList, } from '@chakra-ui/react'
+import { InputGroup, InputLeftElement, Input, Button, Avatar, WrapItem, Box, MenuButton, Menu, MenuItem, MenuList, useStatStyles, } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 import dynamic from 'next/dynamic'
 import RecommendationsSection from "~/components/sections/recommendations";
 import { VscBellDot } from 'react-icons/vsc'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { useDashboardStore } from "~/stores/dashboard";
 
 const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 	return (
@@ -26,6 +27,9 @@ const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 }
 
 const SearchBar = () => {
+	const searchQuery = useDashboardStore.use.searchQuery();
+	const setSearchQuery = useDashboardStore.use.setSearchQuery();
+
 	return (
 		<InputGroup>
 			<InputLeftElement
@@ -33,7 +37,7 @@ const SearchBar = () => {
 				// eslint-disable-next-line react/no-children-prop
 				children={<FiSearch color='gray.300' />}
 			/>
-			<Input type='text' variant='filled' placeholder='Search' borderRadius={15} />
+			<Input type='text' variant='filled' placeholder='Search' borderRadius={15} value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
 		</InputGroup>
 	)
 }
@@ -57,10 +61,10 @@ const Sidebar = () => {
 const DashboardToolbar = () => {
 	return (
 		<>
-			<div className='flex flex-row items-center col-span-1 col-start-1 row-start-1 p-5'>
+			<div className='flex flex-row items-center mr-5'>
 				<SearchBar />
 			</div>
-			<div className="flex flex-row py-5 items-center col-start-2 row-start-1">
+			<div className="flex flex-row items-center">
 				<div className='flex flex-row gap-5'>
 					<Button rounded='full' className='w-5 h-5' p={0}>
 						<VscBellDot size={20} />
@@ -95,12 +99,21 @@ const DashboardToolbar = () => {
 }
 
 const DashboardView = () => {
+	const searchQuery = useDashboardStore.use.searchQuery()
+
+	let shouldShowHealthDiagnosis = true;
+	let shouldShowRecommendations = true;
+	if (searchQuery !== '') {
+		shouldShowHealthDiagnosis = 'health diagnosis'.includes(searchQuery.toLowerCase())
+		shouldShowRecommendations = 'recommendations'.includes(searchQuery.toLowerCase())
+	}
+
 	return (
 		<div className='flex flex-col'>
-			<div className='grid grid-cols-[4fr,6fr] grid-rows-[1fr,8fr,4fr]'>
+			<div className='grid grid-cols-[4fr,6fr] grid-rows-[1fr,8fr,4fr] p-5'>
 				<DashboardToolbar />
-				<HealthDiagnosisSection />
-				<RecommendationsSection />
+				{shouldShowHealthDiagnosis && <HealthDiagnosisSection />}
+				{shouldShowRecommendations && <RecommendationsSection />}
 			</div>
 		</div>
 	)
