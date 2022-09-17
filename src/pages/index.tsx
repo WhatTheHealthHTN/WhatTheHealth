@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { motion } from 'framer-motion'
 import Link from "next/link";
+import { useEffect } from "react";
+import Head from "next/head.js";
 
 const HomeHeader = () => {
 	return (
@@ -17,12 +19,13 @@ const HomeHeader = () => {
 const Home: NextPage = () => {
 	return (
 		<div className="min-h-screen">
+			<div className='absolute -z-1' id="three-container"></div>
 			<HomeHeader />
 			<motion.div className="text-center font-bold text-6xl text-gray-700 pt-20 px-8 max-w-3xl mx-auto"
 				transition={{ ease: "easeOut", duration: 0.5 }}
 				initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
 				Understand your{" "}
-				<span className="from-[#ff0000] to-[#ff8888] bg-clip-text bg-gradient-to-r text-transparent">
+				<span className="from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent">
 					health
 				</span>
 				, fully.
@@ -33,7 +36,7 @@ const Home: NextPage = () => {
 
 			<motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5, ease: 'circOut' }} className='flex flex-col items-center'>
 				<Link href='/dashboard'>
-					<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#ff0000] to-[#ff8888] hover:opacity-70 transition-all text-lg'>Get Started</button>
+					<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg'>Get Started</button>
 				</Link>
 			</motion.div>
 
