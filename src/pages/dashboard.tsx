@@ -45,7 +45,7 @@ const SearchBar = () => {
 
 const Sidebar = () => {
 	return (
-		<div className='w-[200px] flex flex-col bg-[rgb(249,245,239)]'>
+		<div className='w-[200px] flex  self-stretch flex-col bg-[rgb(249,245,239)]'>
 			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
 				<div className='w-full text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-2xl'>HealthApp</div>
 				<div className="flex flex-col gap-2">
@@ -113,7 +113,7 @@ const DashboardView = () => {
 
 	return (
 		<div className='flex flex-col'>
-			<div className='grid grid-cols-[4fr,4fr] grid-rows-[1fr,8fr,4fr] p-5'>
+			<div className='grid grid-cols-[1fr,1fr] grid-rows-[max-content,4fr,max-content] p-5'>
 				<DashboardToolbar />
 				{shouldShowHealthDiagnostics && <HealthDiagnosticsSection />}
 				{shouldShowRecommendations && <RecommendationsSection />}
@@ -127,7 +127,7 @@ const HealthDiagnosticsSection = dynamic(() => import('~/components/sections/hea
 
 const DashboardPage: NextPage = () => {
 	return (
-		<div className="flex flex-row flex-1 h-screen w-full min-w-[1080px] min-h-[720px]">
+		<div className="flex flex-row flex-1 h-full w-full min-w-[1080px] min-h-[720px]">
 			<Sidebar />
 			<div className='flex-1'>
 				<DashboardView />
