@@ -1,15 +1,17 @@
 import { NextPage } from "next";
 import { ReactElement } from "react";
-import { MdDashboard } from 'react-icons/md'
-import { BsShieldCheck, BsPersonFill } from 'react-icons/bs'
+import { MdDashboard, MdNotificationsActive } from 'react-icons/md'
+import { BsShieldCheck, BsPersonFill, BsChevronDown } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiBarChart2Fill } from 'react-icons/ri'
 import { FaHistory } from 'react-icons/fa'
 import { ImExit, ImPlus } from 'react-icons/im'
-import { InputGroup, InputLeftElement, Input, Avatar } from '@chakra-ui/react'
+import { InputGroup, InputLeftElement, Input, Button, Avatar, WrapItem, Box, MenuButton, Menu, MenuItem, MenuList, } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
-import { Cell, Pie, PieChart } from "recharts";
 import dynamic from 'next/dynamic'
+import RecommendationsSection from "~/components/sections/recommendations";
+import { VscBellDot } from 'react-icons/vsc'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 	return (
@@ -25,7 +27,7 @@ const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 
 const SearchBar = () => {
 	return (
-		<InputGroup width={260} className='m-4'>
+		<InputGroup width={350}>
 			<InputLeftElement
 				pointerEvents='none'
 				// eslint-disable-next-line react/no-children-prop
@@ -55,14 +57,53 @@ const Sidebar = () => {
 	)
 }
 
+const DashboardToolbar = () => {
+	return (
+		<div className="flex flex-row p-5 items-center">
+			<div className='flex flex-row gap-5'>
+				<SearchBar />
+				<Button rounded='full' className='w-5 h-5' p={0}>
+					<VscBellDot size={20} />
+				</Button>
+			</div>
+			<div className='flex-1'></div>
+			<Button rounded='full' w={10} h={10} p={0}>
+				<AiOutlinePlus size={20} />
+			</Button>
+
+			<Menu>
+				<MenuButton px={3} py={1} rounded='md' _hover={{ backgroundColor: 'gray.100' }}>
+					<div className='flex flex-row gap-4 items-center'>
+						<Box className='bg-gradient-to-r from-[rgb(238,167,93,0.5)] to-[rgb(238,167,93)] rounded-full flex flex-row items-center justify-center' w={10} h={10}>
+							<Box className='bg-white rounded-full flex flex-row items-center justify-center' h={9} w={9}>
+								<Avatar src='https://bit.ly/prosper-baba' w={8} h={8} />
+							</Box>
+						</Box>
+						<div className='text-sm font-medium'>
+							Leon Si
+						</div>
+						<BsChevronDown size={10} />
+					</div>
+				</MenuButton>
+				<MenuList>
+					<MenuItem>Download</MenuItem>
+					<MenuItem>Create a Copy</MenuItem>
+					<MenuItem>Mark as Draft</MenuItem>
+					<MenuItem>Delete</MenuItem>
+					<MenuItem>Attend a Workshop</MenuItem>
+				</MenuList>
+			</Menu >
+		</div>
+	)
+}
+
 const DashboardView = () => {
 	return (
 		<div className='flex flex-col'>
-			<div className="flex flex-row">
-				<SearchBar />
-			</div>
-			<div className='flex flex-row'>
+			<DashboardToolbar />
+			<div className='grid grid-cols-[4fr,6fr] grid-rows-[5fr,3fr]'>
 				<HealthDiagnosisSection />
+				<RecommendationsSection />
 			</div>
 		</div>
 	)
@@ -72,7 +113,7 @@ const HealthDiagnosisSection = dynamic(() => import('~/components/sections/healt
 
 const DashboardPage: NextPage = () => {
 	return (
-		<div className="flex flex-row flex-1 h-screen w-screen">
+		<div className="flex flex-row flex-1 h-screen w-screen min-w-[1080px] min-h-[720px]">
 			<Sidebar />
 			<div className='flex-1'>
 				<DashboardView />
