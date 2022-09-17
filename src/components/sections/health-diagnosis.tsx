@@ -26,11 +26,10 @@ const HealthDiagnosisSection = () => {
 								</span>
 							</MenuButton>
 							<MenuList>
-								<MenuItem>Download</MenuItem>
-								<MenuItem>Create a Copy</MenuItem>
-								<MenuItem>Mark as Draft</MenuItem>
-								<MenuItem>Delete</MenuItem>
-								<MenuItem>Attend a Workshop</MenuItem>
+								<MenuItem>Yesterday</MenuItem>
+								<MenuItem>Last 7 Days</MenuItem>
+								<MenuItem>Last 2 Weeks</MenuItem>
+								<MenuItem>Last Month</MenuItem>
 							</MenuList>
 						</Menu>
 					</div>
