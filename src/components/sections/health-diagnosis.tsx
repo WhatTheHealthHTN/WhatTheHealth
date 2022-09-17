@@ -10,9 +10,9 @@ const HealthDiagnosisSection = () => {
 	];
 
 	return (
-		<Box className='p-5 ml-4'>
+		<Box className='ml-5'>
 			<div className='flex flex-col items-start'>
-				<div className='flex flex-row mb-4 self-stretch items-center'>
+				<div className='flex flex-row mb-4 self-stretch items-center pr-5'>
 					<div className='font-medium text-xl'>Health Diagnosis</div>
 					<div className='flex-1'></div>
 					<div>
