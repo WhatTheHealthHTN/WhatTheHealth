@@ -3,7 +3,7 @@ import { RecommendationCard } from "~/components/recommendation-card";
 export default function RecommendationsSection() {
 
 	return (
-		<div>
+		<div className='mt-5'>
 			<div className='font-medium mb-4 text-xl py-0.5'>General Recommendations</div>
 			<div className="flex flex-row gap-2">
 				<div className='flex-1'>

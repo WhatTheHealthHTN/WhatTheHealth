@@ -10,7 +10,7 @@ const HealthDiagnosisSection = () => {
 	];
 
 	return (
-		<Box className='ml-5'>
+		<Box className='mt-5'>
 			<div className='flex flex-col items-start'>
 				<div className='flex flex-row mb-4 self-stretch items-center pr-5 row-span-1 row-start-2'>
 					<div className='font-medium text-xl'>Health Diagnosis</div>
