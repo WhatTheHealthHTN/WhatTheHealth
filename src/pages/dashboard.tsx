@@ -5,7 +5,6 @@ import { BsShieldCheck, BsPersonFill, BsChevronDown } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiBarChart2Fill } from 'react-icons/ri'
 import { FaHistory } from 'react-icons/fa'
-import { ImExit, ImPlus } from 'react-icons/im'
 import { InputGroup, InputLeftElement, Input, Button, Avatar, WrapItem, Box, MenuButton, Menu, MenuItem, MenuList, useStatStyles, } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 import dynamic from 'next/dynamic'
@@ -13,6 +12,7 @@ import RecommendationsSection from "~/components/sections/recommendations";
 import { VscBellDot } from 'react-icons/vsc'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { useDashboardStore } from "~/stores/dashboard";
+import { motion } from 'framer-motion'
 
 const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 	return (
@@ -44,16 +44,18 @@ const SearchBar = () => {
 
 const Sidebar = () => {
 	return (
-		<div className='flex flex-col bg-[rgb(249,245,239)]'>
-			<div className='font-medium text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5'>Health <ImPlus className='text-[#3ec3cf]' size={12} /></div>
-			<div className="flex flex-col gap-2">
-				<SidebarTab text='Health' icon={<MdDashboard />} />
-				<SidebarTab text='History' icon={<FaHistory />} />
-				<SidebarTab text='Statistics' icon={<RiBarChart2Fill />} />
-				<SidebarTab text='Settings' icon={<IoMdSettings />} />
-				<SidebarTab text='Profile' icon={<BsPersonFill />} />
-				<SidebarTab text='Support' icon={<BsShieldCheck />} />
-			</div>
+		<div className='w-[200px] flex flex-col bg-[rgb(249,245,239)]'>
+			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+				<div className='w-full font-medium text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5'>HealthApp</div>
+				<div className="flex flex-col gap-2">
+					<SidebarTab text='Health' icon={<MdDashboard />} />
+					<SidebarTab text='History' icon={<FaHistory />} />
+					<SidebarTab text='Statistics' icon={<RiBarChart2Fill />} />
+					<SidebarTab text='Settings' icon={<IoMdSettings />} />
+					<SidebarTab text='Profile' icon={<BsPersonFill />} />
+					<SidebarTab text='Support' icon={<BsShieldCheck />} />
+				</div>
+			</motion.div>
 		</div>
 	)
 }
