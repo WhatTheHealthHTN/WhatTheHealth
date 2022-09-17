@@ -1,7 +1,8 @@
-import { RecommendationCard } from "~/components/recommendation-card";
+import { RecommendationTodos } from "~/components/recommendation-card";
 
 export default function RecommendationsSection() {
-
+	return <RecommendationTodos />
+	/*
 	return (
 		<div className='mt-5'>
 			<div className='font-medium mb-4 text-xl py-0.5'>General Recommendations</div>
@@ -15,4 +16,5 @@ export default function RecommendationsSection() {
 			</div>
 		</div>
 	)
+	*/
 }

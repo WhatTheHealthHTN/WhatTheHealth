@@ -16,6 +16,8 @@
 		"@chakra-ui/system": "^2.2.9",
 		"@emotion/react": "^11.10.4",
 		"@emotion/styled": "^11.10.4",
+		"@ramonak/react-progress-bar": "^5.0.2",
+		"classnames": "^2.3.2",
 		"framer-motion": "^7.3.5",
 		"next": "12.3.0",
 		"prop-types": "^15.8.1",
@@ -24,6 +26,8 @@
 		"react-dom": "18.2.0",
 		"react-icons": "^4.4.0",
 		"recharts": "2.1.12",
+		"tailwind-merge": "^1.6.0",
+		"use-animation-frame": "^0.1.4",
 		"zustand": "^4.1.1"
 	},
 	"devDependencies": {
