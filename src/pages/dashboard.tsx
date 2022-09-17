@@ -123,7 +123,7 @@ const HealthDiagnosisSection = dynamic(() => import('~/components/sections/healt
 
 const DashboardPage: NextPage = () => {
 	return (
-		<div className="flex flex-row flex-1 h-full w-full min-w-[1080px] min-h-[720px]">
+		<div className="flex flex-row flex-1 h-screen w-full min-w-[1080px] min-h-[720px]">
 			<Sidebar />
 			<div className='flex-1'>
 				<DashboardView />
