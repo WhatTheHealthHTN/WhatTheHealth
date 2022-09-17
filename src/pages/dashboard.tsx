@@ -77,7 +77,7 @@ const DashboardToolbar = () => {
 
 				<Menu>
 					<MenuButton px={3} py={1} rounded='md' _hover={{ backgroundColor: 'gray.100' }}>
-						<div className='flex flex-row gap-4 items-center'>
+						<div className='flex flex-row gap-2 items-center'>
 							<Box className='bg-gradient-to-r from-[rgb(238,167,93,0.5)] to-[rgb(238,167,93)] rounded-full flex flex-row items-center justify-center' w={10} h={10}>
 								<Box className='bg-white rounded-full flex flex-row items-center justify-center' h={9} w={9}>
 									<Avatar src='https://bit.ly/prosper-baba' w={8} h={8} />

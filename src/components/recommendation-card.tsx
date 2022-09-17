@@ -1,4 +1,4 @@
-import { Avatar, Box, Checkbox, Progress } from '@chakra-ui/react'
+import { Avatar, Box, Checkbox, Progress, Spinner } from '@chakra-ui/react'
 import { BsChevronRight } from 'react-icons/bs'
 import { useDashboardStore } from '~/stores/dashboard'
 import { Todo } from '~/types/todo'
@@ -25,34 +25,47 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 		checked: false,
 		timestamp: 0
 	})
+	const [isRecalculating, setIsRecalculating] = useState(false)
 	const [timeElapsed, setTimeElapsed] = useState(0)
-	const todos = useDashboardStore.use.todos()
+	const deleteTodo = useDashboardStore.use.deleteTodo()
+
+	const threeSeconds = 3 * 1000;
 
 	useAnimationFrame(() => {
 		if (checkedData.checked) {
 			const timeElapsed = Date.now() - checkedData.timestamp
 
-			if (timeElapsed - 500 < 5000) {
+			if (timeElapsed - 500 < threeSeconds) {
 				setTimeElapsed(timeElapsed)
 			} else {
+				setIsRecalculating(true)
 
+				setTimeout(() => {
+					deleteTodo(todo.id)
+				}, 2_000)
 			}
 		}
 	})
 
-	const fiveSeconds = 5 * 1000;
 	// Account for transition time
-	const completed = (timeElapsed - 500) / fiveSeconds * 100;
+	const completed = (timeElapsed - 500) / threeSeconds * 100;
 
 	return (
-		<Box rounded='3xl' p={5} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')}>
-			<Checkbox checked={checkedData.checked} onChange={(e) => {
+		<Box rounded='3xl' p={5} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')}>
+			{isRecalculating && (
+				<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[10px]'>
+					<Spinner />
+					<div>Recalculating health score...</div>
+				</div>
+			)}
+
+			<Checkbox className={isRecalculating ? 'invisible' : 'visible'} checked={checkedData.checked} onChange={(e) => {
 				setCheckedData({
 					checked: (e.target as any).checked,
 					timestamp: Date.now()
 				})
 			}} />
-			<div className='relative'>
+			<div className={cx('relative', isRecalculating ? 'invisible' : 'visible')}>
 				<motion.div className={cx('flex flex-col absolute -translate-x-1/2 -translate-y-1/2 top-1/2 ml-[70px]', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
 					<span className='font-medium'>
 						{todo.title}
@@ -64,7 +77,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 						<span className='font-medium flex flex-row items-center gap-2'>
 							Task completed! <span className='text-xl'>🎉</span>
 						</span>
-						<div className='mb-2 text-gray-500'>You have <span className='font-bold'>{Math.ceil((5 - ((timeElapsed - 500) / 1000)))}s</span> to undo the action before task disappears from the list.</div>
+						<div className='mb-2 text-gray-500'>You have <span className='font-bold'>{Math.ceil((3 - ((timeElapsed - 500) / 1000)))}s</span> to undo the action before the task disappears from the list.</div>
 						<Progress value={completed} rounded='md' height='7px' />
 					</div>
 				</motion.div>
@@ -76,14 +89,16 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 export function RecommendationTodos() {
 	const todos = useDashboardStore.use.todos()
 
-	return (<div>
-		<div className='text-xl font-medium mt-[1.5rem] mb-5'>General Recommendations</div>
-		<div className='flex flex-col gap-5'>
-			{todos.map((todo, i) => {
-				return (
-					<RecommendationTodo key={i} todo={todo} />
-				)
-			})}
+	return (
+		<div>
+			<div className='text-xl font-medium mt-[1.5rem] mb-5'>General Recommendations</div>
+			<div className='flex flex-col gap-5'>
+				{todos.map((todo) => {
+					return (
+						<RecommendationTodo key={todo.id} todo={todo} />
+					)
+				})}
+			</div>
 		</div>
-	</div>)
+	)
 }
