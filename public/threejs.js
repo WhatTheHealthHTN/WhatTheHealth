@@ -620,3 +620,5 @@ THREE.BAS.PhongAnimationMaterial.prototype._concatVertexShader = function() {
 
     ].join( "\n" );
 };
+
+init()
