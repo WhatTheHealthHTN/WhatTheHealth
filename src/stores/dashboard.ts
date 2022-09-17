@@ -1,6 +1,7 @@
 import create from 'zustand'
 import { Todo } from '~/types/todo'
 import { createSelectors } from '~/utils/store'
+import { Tag } from '~/utils/tag'
 
 interface DashboardStoreState {
 	searchQuery: string, setSearchQuery: (searchQuery: string) => void
@@ -13,15 +14,18 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 	todos: [
 		{
 			id: 1,
-			tag: 'exercise',
-			tagColor: 'orange',
+			tag: Tag.exercise,
 			title: 'Get more exercise'
 		},
 		{
 			id: 2,
-			tag: 'water',
-			tagColor: 'blue',
+			tag: Tag.nutrition,
 			title: 'Drink more water'
+		},
+		{
+			id: 3,
+			tag: Tag.sleep,
+			title: 'Sleep earlier'
 		}
 	],
 	setSearchQuery: (searchQuery: string) => set({ searchQuery }),
