@@ -4,7 +4,7 @@ export default function RecommendationsSection() {
 
 	return (
 		<div>
-			<div className='font-medium mb-4 text-xl'>Recommendations</div>
+			<div className='font-medium mb-4 text-xl py-0.5'>General Recommendations</div>
 			<div className="flex flex-row gap-2">
 				<div className='flex-1'>
 					<RecommendationCard title='Drink Water' subtitle='Stay hydrated' imageUrl='https://banner2.cleanpng.com/20180514/wgq/kisspng-computer-icons-water-drop-free-information-compute-5af966beebe706.1395239415262942069663.jpg' />

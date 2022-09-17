@@ -16,11 +16,11 @@ import { AiOutlinePlus } from 'react-icons/ai'
 const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 	return (
 		<div className="flex flex-row group">
-			<div className='flex flex-row items-center gap-2 pl-5 pr-14 py-3 text-gray-500 group-hover:bg-[rgb(255,253,252)] cursor-pointer flex-1'>
+			<div className='flex flex-row items-center gap-2 pl-5 pr-14 py-3 text-gray-500 group-hover:bg-[rgb(255,253,252)] cursor-pointer flex-1 transition-all'>
 				<span className='text-lg'>{icon}</span>
 				<span className='text-xs font-bold'>{text}</span>
 			</div>
-			<span className='invisible group-hover:visible w-1 self-stretch bg-[rgb(103,192,205)]'></span>
+			<span className='opacity-0 group-hover:opacity-100 w-1 self-stretch bg-[rgb(103,192,205)] transition-all'></span>
 		</div>
 	)
 }
@@ -42,7 +42,6 @@ const Sidebar = () => {
 	return (
 		<div className='flex flex-col bg-[rgb(249,245,239)]'>
 			<div className='font-medium text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5'>Health <ImPlus className='text-[#3ec3cf]' size={12} /></div>
-			<div className='flex flex-grow-[1]'></div>
 			<div className="flex flex-col gap-2">
 				<SidebarTab text='Health' icon={<MdDashboard />} />
 				<SidebarTab text='History' icon={<FaHistory />} />
@@ -51,8 +50,6 @@ const Sidebar = () => {
 				<SidebarTab text='Profile' icon={<BsPersonFill />} />
 				<SidebarTab text='Support' icon={<BsShieldCheck />} />
 			</div>
-			<div className='flex flex-grow-[2]'></div>
-			<SidebarTab text='Exit' icon={<ImExit />} />
 		</div>
 	)
 }
@@ -89,11 +86,7 @@ const DashboardToolbar = () => {
 						</div>
 					</MenuButton>
 					<MenuList>
-						<MenuItem>Download</MenuItem>
-						<MenuItem>Create a Copy</MenuItem>
-						<MenuItem>Mark as Draft</MenuItem>
-						<MenuItem>Delete</MenuItem>
-						<MenuItem>Attend a Workshop</MenuItem>
+						<MenuItem><span className='text-red-400'>Logout</span></MenuItem>
 					</MenuList>
 				</Menu >
 			</div>
@@ -117,7 +110,7 @@ const HealthDiagnosisSection = dynamic(() => import('~/components/sections/healt
 
 const DashboardPage: NextPage = () => {
 	return (
-		<div className="flex flex-row flex-1 h-screen w-screen min-w-[1080px] min-h-[720px]">
+		<div className="flex flex-row flex-1 h-full w-full min-w-[1080px] min-h-[720px]">
 			<Sidebar />
 			<div className='flex-1'>
 				<DashboardView />
