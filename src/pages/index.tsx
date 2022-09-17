@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { motion } from 'framer-motion'
 import Link from "next/link";
-import Script from "next/script";
 
 const HomeHeader = () => {
 	return (
@@ -17,7 +16,7 @@ const HomeHeader = () => {
 
 const Home: NextPage = () => {
 	return (
-		<div className="min-h-screen overflow-x-hidden bg-gradient-to-r">
+		<div>
 			<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 1 }} id='three-container' className='absolute top-[400px] xs:top-[350px] pointer-events-none -z-[1] overflow-hidden max-w-full'></motion.div>
 			<HomeHeader />
 			<motion.div className="text-center font-bold text-6xl text-black pt-20 px-8 max-w-3xl mx-auto z-1"
@@ -38,9 +37,6 @@ const Home: NextPage = () => {
 					<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg'>Get Started</button>
 				</Link>
 			</motion.div>
-
-			<Script src='/public/threejs.js' />
-			<canvas id="background" />
 		</div>
 	);
 };

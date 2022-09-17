@@ -13,6 +13,7 @@ import { VscBellDot } from 'react-icons/vsc'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { useDashboardStore } from "~/stores/dashboard";
 import { motion } from 'framer-motion'
+import HealthTipsSection from "~/components/sections/health-tips";
 
 const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 	return (
@@ -46,7 +47,7 @@ const Sidebar = () => {
 	return (
 		<div className='w-[200px] flex flex-col bg-[rgb(249,245,239)]'>
 			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
-				<div className='w-full font-medium text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5'>HealthApp</div>
+				<div className='w-full text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-2xl'>HealthApp</div>
 				<div className="flex flex-col gap-2">
 					<SidebarTab text='Health' icon={<MdDashboard />} />
 					<SidebarTab text='History' icon={<FaHistory />} />
@@ -103,25 +104,26 @@ const DashboardToolbar = () => {
 const DashboardView = () => {
 	const searchQuery = useDashboardStore.use.searchQuery()
 
-	let shouldShowHealthDiagnosis = true;
+	let shouldShowHealthDiagnostics = true;
 	let shouldShowRecommendations = true;
 	if (searchQuery !== '') {
-		shouldShowHealthDiagnosis = 'health diagnosis'.includes(searchQuery.toLowerCase())
+		shouldShowHealthDiagnostics = 'health diagnostics'.includes(searchQuery.toLowerCase())
 		shouldShowRecommendations = 'recommendations'.includes(searchQuery.toLowerCase())
 	}
 
 	return (
 		<div className='flex flex-col'>
-			<div className='grid grid-cols-[4fr,6fr] grid-rows-[1fr,8fr,4fr] p-5'>
+			<div className='grid grid-cols-[4fr,4fr] grid-rows-[1fr,8fr,4fr] p-5'>
 				<DashboardToolbar />
-				{shouldShowHealthDiagnosis && <HealthDiagnosisSection />}
+				{shouldShowHealthDiagnostics && <HealthDiagnosticsSection />}
 				{shouldShowRecommendations && <RecommendationsSection />}
+				<HealthTipsSection />
 			</div>
 		</div>
 	)
 }
 
-const HealthDiagnosisSection = dynamic(() => import('~/components/sections/health-diagnosis'), { ssr: false })
+const HealthDiagnosticsSection = dynamic(() => import('~/components/sections/health-diagnostics'), { ssr: false })
 
 const DashboardPage: NextPage = () => {
 	return (

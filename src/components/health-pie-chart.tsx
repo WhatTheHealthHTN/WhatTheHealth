@@ -1,7 +1,12 @@
 import CountUp from "react-countup";
 import { PieChart, Pie, Cell } from "recharts";
 
-export function HealthPieChart({ data }: { data: Array<{ value: number, color: string }> }) {
+export function HealthPieChart({ value }: { value: number }) {
+	const data = [
+		{ value: 92 },
+		{ value: 100 - 92, color: 'transparent' }
+	]
+
 	return (
 		<div className='flex flex-col items-center mx-auto'>
 			<div className='font-bold text-2xl !bg-clip-text text-transparent from-[#ffd580] to-[#ff8c00] bg-gradient-to-r -mb-2'>Overall Score</div>
