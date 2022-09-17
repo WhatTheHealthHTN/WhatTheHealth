@@ -2,17 +2,16 @@ import { Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { motion } from 'framer-motion'
 import Link from "next/link";
-import { useEffect } from "react";
 import Script from "next/script";
 
 const HomeHeader = () => {
 	return (
-		<div className='flex flex-row py-2 px-4 gap-2 items-center'>
-			<div className='text-white font-bold'>HealthApp</div>
+		<motion.div initial={{ marginTop: -10, opacity: 0 }} animate={{ opacity: 1, marginTop: 0 }} className='flex flex-row py-4 px-8 gap-2 items-center'>
+			<div className='text-white font-bold text-2xl'>HealthApp</div>
 			<div className='flex-1'></div>
-			<Button>Login</Button>
-			<Button>Sign up</Button>
-		</div>
+			<Button bgColor='#E338F9' color='white'>Login</Button>
+			<Button bgColor='#e1a401' color='white'>Sign up</Button>
+		</motion.div>
 	)
 }
 
