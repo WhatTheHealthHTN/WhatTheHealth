@@ -1,0 +1,34 @@
+PODS:
+  - Capacitor (3.8.0):
+    - CapacitorCordova
+  - CapacitorCordova (3.8.0)
+  - CapacitorStatusBar (1.0.8):
+    - Capacitor
+  - CordovaPlugins (3.8.0):
+    - CapacitorCordova
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@3.8.0_@capacitor+core@3.8.0/node_modules/@capacitor/ios`)"
+  - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@3.8.0_@capacitor+core@3.8.0/node_modules/@capacitor/ios`)"
+  - "CapacitorStatusBar (from `../../node_modules/.pnpm/@capacitor+status-bar@1.0.8_@capacitor+core@3.8.0/node_modules/@capacitor/status-bar`)"
+  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/.pnpm/@capacitor+ios@3.8.0_@capacitor+core@3.8.0/node_modules/@capacitor/ios"
+  CapacitorCordova:
+    :path: "../../node_modules/.pnpm/@capacitor+ios@3.8.0_@capacitor+core@3.8.0/node_modules/@capacitor/ios"
+  CapacitorStatusBar:
+    :path: "../../node_modules/.pnpm/@capacitor+status-bar@1.0.8_@capacitor+core@3.8.0/node_modules/@capacitor/status-bar"
+  CordovaPlugins:
+    :path: "../capacitor-cordova-ios-plugins"
+
+SPEC CHECKSUMS:
+  Capacitor: 858180089d91c2da74977836a9da6586a4215552
+  CapacitorCordova: c529275185e3cfb6c2015c1500efa563e867b2de
+  CapacitorStatusBar: 2f4da63c505cfdecdbff4d4345dac24c11e7f699
+  CordovaPlugins: aca130ee5e10a12f6c5eff4a57e9387562e3c617
+
+PODFILE CHECKSUM: 3dba6283b4fa55258799aa6d9fbe7aebeb9ac4e2
+
+COCOAPODS: 1.11.3
