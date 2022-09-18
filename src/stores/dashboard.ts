@@ -15,12 +15,12 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		{
 			id: 1,
 			tag: Tag.exercise,
-			title: 'Get more exercise'
+			title: 'Get more exercise Get more exercise Get more exercise'
 		},
 		{
 			id: 2,
 			tag: Tag.nutrition,
-			title: 'Drink more water'
+			title: 'Drink more water Drink more water Drink more water'
 		},
 		{
 			id: 3,
