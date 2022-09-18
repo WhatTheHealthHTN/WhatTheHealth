@@ -85,7 +85,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 						</span>
 						<div className='flex-1'></div>
 						<div className='mt-0.5'>
-							<Tag size='md' style={{ background: getTagColors(todo.tag)[0] }} borderRadius='full'>
+							<Tag size='md' pl={4} style={{ background: getTagColors(todo.tag)[0] }} borderRadius='full'>
 								<TagLabel className='text-white'>{todo.tag}</TagLabel>
 							</Tag>
 						</div>
@@ -93,7 +93,6 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 
 
 					<div className={cx('relative', isRecalculating ? 'invisible' : 'visible')}>
-
 						<motion.div className={cx(checkedData.checked ? 'pointer-events-auto' : 'pointer-events-none')} initial={{ opacity: 0, marginLeft: -5 }} animate={checkedData.checked ? { opacity: 1, marginLeft: 0 } : {}} transition={{ delay: checkedData.checked ? 0.5 : 0, duration: checkedData.checked ? 0.2 : 0.5 }} >
 							<div className='flex flex-col'>
 								<span className='font-medium flex flex-row items-center gap-2'>
