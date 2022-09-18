@@ -5,6 +5,7 @@ import { useDashboardStore } from "~/stores/dashboard";
 
 export function HealthPieChart({ value }: { value: number }) {
 	const fetchScore = useDashboardStore.use.fetchScore()
+	const scores = useDashboardStore.use.scores();
 
 	useEffect(() => {
 		(async () => {
@@ -13,8 +14,8 @@ export function HealthPieChart({ value }: { value: number }) {
 	}, [fetchScore])
 
 	const data = [
-		{ value: 92 },
-		{ value: 100 - 92, color: 'transparent' }
+		{ value: scores.overall },
+		{ value: 100 - scores.overall, color: 'transparent' }
 	]
 
 	return (

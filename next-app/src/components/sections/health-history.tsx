@@ -6,7 +6,7 @@ const historyData = [
 	{
 		date: '2022-09-14',
 		blood: 82,
-		pollution: 77,
+		environment: 77,
 		exercise: 66,
 		nutrition: 71,
 		sleep: 71,
@@ -15,7 +15,7 @@ const historyData = [
 	{
 		date: '2022-09-15',
 		blood: 83,
-		pollution: 74,
+		environment: 74,
 		exercise: 67,
 		nutrition: 72,
 		sleep: 73,
@@ -24,7 +24,7 @@ const historyData = [
 	{
 		date: '2022-09-16',
 		blood: 80,
-		pollution: 75,
+		environment: 75,
 		exercise: 63,
 		nutrition: 71,
 		sleep: 75,
@@ -33,7 +33,7 @@ const historyData = [
 	{
 		date: '2022-09-17',
 		blood: 88,
-		pollution: 72,
+		environment: 72,
 		exercise: 60,
 		nutrition: 75,
 		sleep: 80,
@@ -54,7 +54,7 @@ const HealthHistorySection = () => {
 				<Line type="monotone" dataKey="blood" stroke={getTagColors(Tag.blood)[0]} />
 				<Line type="monotone" dataKey="exercise" stroke={getTagColors(Tag.exercise)[0]} />
 				<Line type="monotone" dataKey="nutrition" stroke={getTagColors(Tag.nutrition)[0]} />
-				<Line type="monotone" dataKey="pollution" stroke={getTagColors(Tag.pollution)[0]} />
+				<Line type="monotone" dataKey="environment" stroke={getTagColors(Tag.environment)[0]} />
 				<Line type="monotone" dataKey="sleep" stroke={getTagColors(Tag.sleep)[0]} />
 			</LineChart>
 		</Box>

@@ -23,22 +23,37 @@ type Metric = any
 
 interface DashboardStoreState {
 	searchQuery: string, setSearchQuery: (searchQuery: string) => void
-	overallScore: number;
 	todos: Todo[]
 	top3Metrics: Metric[]
+	scores: {
+		overall: number;
+		[Tag.blood]: number;
+		[Tag.environment]: number;
+		[Tag.exercise]: number;
+		[Tag.nutrition]: number;
+		[Tag.sleep]: number;
+	}
 	deleteTodo: (id: number) => void;
 	fetchScore: () => Promise<any>
+	updateScores: (args: { overall?: number, blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) => void
 }
 
 export const useDashboardStore = createSelectors(create<DashboardStoreState>((set) => ({
 	searchQuery: '',
-	overallScore: 0,
+	scores: {
+		overall: 0,
+		[Tag.blood]: 0,
+		[Tag.environment]: 0,
+		[Tag.exercise]: 0,
+		[Tag.nutrition]: 0,
+		[Tag.sleep]: 0,
+	},
 	top3Metrics: [],
 	todos: [
 		{
 			id: 1,
-			tag: Tag.exercise,
-			title: 'Get more exercise Get more exercise Get more exercise',
+			tag: Tag.blood,
+			title: 'Focus on decreasing your Hemoglobin level from 172 g/L down between 129 → 165 g/L',
 			photoRequired: true
 		},
 		{
@@ -58,6 +73,19 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 			return { todos: state.todos.filter(todo => todo.id !== id) }
 		})
 	},
+	updateScores({ overall, blood, environment, exercise, nutrition, sleep }: { overall?: number, blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) {
+		// @ts-expect-error: over
+		set((state) => ({
+			scores: {
+				...state.scores,
+				overall,
+				blood,
+				environment,
+				nutrition,
+				sleep
+			}
+		}))
+	},
 	async fetchScore() {
 		let url = 'http://localhost:3000/ai-health-engine?'
 		const searchParams: string[] = []
@@ -74,7 +102,7 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		url += searchParams.join('&')
 
 		const response = await ky(url);
-		const result = await response.json()
+		const result = await response.json<any>()
 
 		const overallScore = result['OVERALL_SCORE']
 		const top3Metrics = result['TOP_3_METRICS']

@@ -1,6 +1,6 @@
 export enum Tag {
 	blood = 'blood',
-	pollution = 'pollution',
+	environment = 'environment',
 	exercise = 'exercise',
 	nutrition = 'nutrition',
 	sleep = 'sleep'
@@ -10,7 +10,7 @@ export function getTagColors(tag: Tag) {
 	switch (tag) {
 		case Tag.blood:
 			return ['#ff0000aa', '#ff0000'];
-		case Tag.pollution:
+		case Tag.environment:
 			return ['#252525aa', '#252525'];
 		case Tag.exercise:
 			return ['#00008Baa', '#00008B'];
