@@ -20,10 +20,10 @@ export default function HealthTipsSection() {
 	return (
 		<div>
 			<div className='font-bold text-xl mt-4 mb-2'>General Health Tips</div>
-			<div className='flex flex-col gap-4'>
+			<div className='flex flex-row gap-4'>
 				{healthTips.map((healthTip, i) => {
 					return (
-						<Box key={i} rounded='2xl' p={5} shadow='md' className='flex flex-col gap-4'>
+						<Box key={i} rounded='2xl' p={5} shadow='md' className='flex flex-col gap-4 flex-1'>
 							<div className='font-medium'>
 								{healthTip.title}
 							</div>

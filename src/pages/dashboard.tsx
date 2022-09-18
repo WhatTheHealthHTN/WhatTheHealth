@@ -1,10 +1,5 @@
 import { NextPage } from "next";
-import { ReactElement } from "react";
-import { MdDashboard } from 'react-icons/md'
-import { BsShieldCheck, BsPersonFill, BsChevronDown } from 'react-icons/bs'
-import { IoMdSettings } from 'react-icons/io'
-import { RiBarChart2Fill } from 'react-icons/ri'
-import { FaHistory } from 'react-icons/fa'
+import { BsChevronDown } from 'react-icons/bs'
 import { InputGroup, InputLeftElement, Input, Button, Avatar, Box, MenuButton, Menu, MenuItem, MenuList } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 import dynamic from 'next/dynamic'
@@ -66,41 +61,38 @@ const Sidebar = () => {
 
 const DashboardToolbar = () => {
 	return (
-		<>
-			<div className='flex flex-row items-center mr-5'>
+		<div className='flex flex-row items-center'>
+			<div className='w-[23rem] mr-3'>
 				<SearchBar />
 			</div>
-			<div className="flex flex-row items-center">
-				<div className='flex flex-row gap-5'>
-					<Button rounded='full' className='w-5 h-5' p={0}>
-						<VscBellDot size={20} />
-					</Button>
-				</div>
-				<div className='flex-1'></div>
-				<Button rounded='full' w={10} h={10} p={0} className='mr-2'>
-					<AiOutlinePlus size={20} />
-				</Button>
+			<Button rounded='full' className='w-5 h-5' p={0}>
+				<VscBellDot size={20} />
+			</Button>
 
-				<Menu>
-					<MenuButton px={3} py={1} rounded='md' _hover={{ backgroundColor: 'gray.100' }}>
-						<div className='flex flex-row gap-2 items-center'>
-							<Box className='bg-gradient-to-r from-[rgb(238,167,93,0.5)] to-[rgb(238,167,93)] rounded-full flex flex-row items-center justify-center' w={10} h={10}>
-								<Box className='bg-white rounded-full flex flex-row items-center justify-center' h={9} w={9}>
-									<Avatar src='/user.png' w={8} h={8} />
-								</Box>
+			<div className='flex-1'></div>
+			<Button rounded='full' w={10} h={10} p={0} className='mr-2'>
+				<AiOutlinePlus size={20} />
+			</Button>
+
+			<Menu>
+				<MenuButton px={3} py={1} rounded='md' _hover={{ backgroundColor: 'gray.100' }}>
+					<div className='flex flex-row gap-2 items-center'>
+						<Box className='bg-gradient-to-r from-[rgb(238,167,93,0.5)] to-[rgb(238,167,93)] rounded-full flex flex-row items-center justify-center' w={10} h={10}>
+							<Box className='bg-white rounded-full flex flex-row items-center justify-center' h={9} w={9}>
+								<Avatar src='/user.png' w={8} h={8} />
 							</Box>
-							<div className='text-sm font-medium'>
-								Umesh Maini
-							</div>
-							<BsChevronDown size={10} />
+						</Box>
+						<div className='text-sm font-medium'>
+							Umesh Maini
 						</div>
-					</MenuButton>
-					<MenuList>
-						<MenuItem><span className='text-red-400'>Logout</span></MenuItem>
-					</MenuList>
-				</Menu >
-			</div>
-		</>
+						<BsChevronDown size={10} />
+					</div>
+				</MenuButton>
+				<MenuList>
+					<MenuItem><span className='text-red-400'>Logout</span></MenuItem>
+				</MenuList>
+			</Menu>
+		</div>
 	)
 }
 
@@ -116,12 +108,16 @@ const DashboardView = () => {
 
 	return (
 		<div className='flex flex-col'>
-			<div className='grid grid-cols-[600px,auto] grid-rows-[max-content,4fr,max-content] p-5'>
+			<div className='p-5'>
 				<DashboardToolbar />
-				{shouldShowRecommendations && <RecommendationsSection />}
-				<HealthHistorySection />
 				<HealthTipsSection />
-				<MedicationsSection />
+				<div className='flex flex-row'>
+					<div className='flex flex-col'>
+						<HealthHistorySection />
+						<MedicationsSection />
+					</div>
+					<RecommendationsSection />
+				</div>
 			</div>
 		</div>
 	)
@@ -131,7 +127,7 @@ const HealthDiagnosticsSection = dynamic(() => import('~/components/sections/hea
 
 const DashboardPage: NextPage = () => {
 	return (
-		<div className="flex flex-row flex-1 h-full w-full min-w-[1080px] min-h-[720px]">
+		<div className="flex flex-row flex-1 h-full w-full min-w-[1368px] min-h-screen">
 			<Sidebar />
 			<div className='flex-1'>
 				<DashboardView />
