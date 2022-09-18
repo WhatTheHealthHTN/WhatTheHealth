@@ -44,8 +44,8 @@ const historyData = [
 const HealthHistorySection = () => {
 	return (
 		<Box className='mt-5'>
-			<div className='text-xl font-bold mt-[0.21rem] mb-3'>History</div>
-			<LineChart width={500} height={300} data={historyData}
+			<div className='text-xl font-bold mt-[0.21rem] mb-3'>Health History</div>
+			<LineChart width={600} height={300} data={historyData}
 				margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis dataKey="name" />

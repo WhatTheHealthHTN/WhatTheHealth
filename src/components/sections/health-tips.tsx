@@ -19,7 +19,7 @@ const healthTips = [
 
 export default function HealthTipsSection() {
 	return (
-		<div className='flex-1'>
+		<div className='flex-1 mr-5'>
 			<div className='font-bold text-xl mt-6 mb-2'>General Health Tips</div>
 			<div className='flex flex-col gap-4 items-stretch'>
 				{healthTips.map((healthTip, i) => {
