@@ -13,9 +13,9 @@ export function HealthLineBar({ text, value, fromColor, toColor }: { text: strin
 			</div>
 
 			<div className='relative'>
-				<div className='h-2 opacity-20 self-stretch rounded-full' style={{ backgroundColor: fromColor }}>
+				<div className='h-4 opacity-20 self-stretch rounded-full' style={{ backgroundColor: fromColor }}>
 				</div>
-				<motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: 1 }} style={{ background: `linear-gradient(90deg, ${fromColor}, ${toColor})` }} className={`absolute inset-0 z-1 rounded-md `}></motion.div>
+				<motion.div initial={{ width: 0 }} animate={{ width: `${value}%` }} transition={{ duration: 1 }} style={{ background: `linear-gradient(90deg, ${fromColor}, ${toColor})` }} className={`absolute inset-0 z-1 rounded-full`}></motion.div>
 			</div>
 		</div>
 	)
