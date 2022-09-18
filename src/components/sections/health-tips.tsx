@@ -1,15 +1,14 @@
-import { Box } from "@chakra-ui/react";
 import { BsChevronRight } from "react-icons/bs";
 import { motion } from 'framer-motion'
 
-const healthTips = [
+const morningHealthTips = [
 	{
-		title: 'Health Tip #1',
-		description: 'Health Tip #1 Description'
+		title: 'Morning Sunlight',
+		description: 'Try to get direct sunlight for at least 15 mins within the first hour of waking up.'
 	},
 	{
-		title: 'Health Tip #2',
-		description: 'Health Tip #2 Description'
+		title: 'Morning Water',
+		description: 'Drink 8 ounces of water as the first liquid you consume in the morning'
 	},
 	{
 		title: 'Health Tip #3',
@@ -22,7 +21,7 @@ export default function HealthTipsSection() {
 		<div className='flex-1 mr-5'>
 			<div className='font-bold text-xl mt-6 mb-2'>General Health Tips</div>
 			<div className='flex flex-col gap-4 items-stretch'>
-				{healthTips.map((healthTip, i) => {
+				{morningHealthTips.map((healthTip, i) => {
 					return (
 						<motion.div key={i} initial={{ opacity: 0, right: -10 }} animate={{ opacity: 1, right: 0 }} transition={{ duration: 0.5, delay: i / 5 }} className='relative flex flex-col gap-4 flex-1 rounded-2xl shadow-md p-5 border'>
 							<div className='font-medium'>
