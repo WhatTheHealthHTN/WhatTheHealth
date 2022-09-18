@@ -9,8 +9,8 @@ function App(conf) {
     zCoef: 10,
     lightIntensity: 0.9,
     ambientColor: 0x000000,
-    light1Color: 0x0E09DC,
-    light2Color: 0x1CD1E1,
+    light1Color: 0xE338F9,
+    light2Color: 0xFEC93A,
     light3Color: 0x18C02C,
     light4Color: 0xee3bcf,
     ...conf
@@ -18,18 +18,11 @@ function App(conf) {
 
   let renderer, scene, camera, cameraCtrl;
   let width, height, cx, cy, wWidth, wHeight;
-  const TMath = THREE.Math;
 
   let plane;
   const simplex = new SimplexNoise();
 
   const mouse = new THREE.Vector2();
-  const mousePlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-  const mousePosition = new THREE.Vector3();
-  const raycaster = new THREE.Raycaster();
-
-  const noiseInput = document.getElementById('noiseInput');
-  const heightInput = document.getElementById('heightInput');
 
   init();
 
@@ -41,37 +34,10 @@ function App(conf) {
     updateSize();
     window.addEventListener('resize', updateSize, false);
 
-    document.addEventListener('mousemove', e => {
-      const v = new THREE.Vector3();
-      camera.getWorldDirection(v);
-      v.normalize();
-      mousePlane.normal = v;
-      mouse.x = (e.clientX / width) * 2 - 1;
-      mouse.y = - (e.clientY / height) * 2 + 1;
-      raycaster.setFromCamera(mouse, camera);
-      raycaster.ray.intersectPlane(mousePlane, mousePosition);
-    });
-
     initScene();
-    initGui();
     animate();
   }
 
-  function initGui() {
-    noiseInput.value = 101 - conf.xyCoef;
-    heightInput.value = conf.zCoef * 100 / 25;
-
-    noiseInput.addEventListener('input', e => {
-      conf.xyCoef = 101 - noiseInput.value;
-    });
-    heightInput.addEventListener('input', e => {
-      conf.zCoef = heightInput.value * 25 / 100;
-    });
-
-    document.getElementById('trigger').addEventListener('click', e => {
-      updateLightsColors();
-    });
-  }
 
   function initScene() {
     scene = new THREE.Scene();
@@ -141,18 +107,6 @@ function App(conf) {
     light3.position.z = Math.sin(time * 0.6) * d;
     light4.position.x = Math.sin(time * 0.7) * d;
     light4.position.z = Math.cos(time * 0.8) * d;
-  }
-
-  function updateLightsColors() {
-    conf.light1Color = chroma.random().hex();
-    conf.light2Color = chroma.random().hex();
-    conf.light3Color = chroma.random().hex();
-    conf.light4Color = chroma.random().hex();
-    light1.color = new THREE.Color(conf.light1Color);
-    light2.color = new THREE.Color(conf.light2Color);
-    light3.color = new THREE.Color(conf.light3Color);
-    light4.color = new THREE.Color(conf.light4Color);
-    // console.log(conf);
   }
 
   function updateSize() {
