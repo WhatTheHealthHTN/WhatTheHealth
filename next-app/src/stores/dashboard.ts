@@ -19,15 +19,21 @@ const idealVals = {
 	'HOURS_OF_SLEEP': 8, 'REM_SLEEP': 0.225, 'DEEP_SLEEP': 0.18, 'HEART_RATE_BELOW_RESTING': 0.58
 }
 
+type Metric = any
+
 interface DashboardStoreState {
 	searchQuery: string, setSearchQuery: (searchQuery: string) => void
+	overallScore: number;
 	todos: Todo[]
+	top3Metrics: Metric[]
 	deleteTodo: (id: number) => void;
 	fetchScore: () => Promise<any>
 }
 
 export const useDashboardStore = createSelectors(create<DashboardStoreState>((set) => ({
 	searchQuery: '',
+	overallScore: 0,
+	top3Metrics: [],
 	todos: [
 		{
 			id: 1,
@@ -70,7 +76,10 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		const response = await ky(url);
 		const result = await response.json()
 
-		console.log(result)
+		const overallScore = result['OVERALL_SCORE']
+		const top3Metrics = result['TOP_3_METRICS']
+		set(() => ({ overallScore, top3Metrics }))
+
 		return result
 	}
 })))
