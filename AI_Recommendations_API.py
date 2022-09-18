@@ -7,18 +7,20 @@ from GENERATOR_XGBOOST import *
 GRADIENT_BOOSTED_HEALTH_ENGINE = Flask(__name__)
 intialize_trees()
 
-@GRADIENT_BOOSTED_HEALTH_ENGINE.route("/ai-health-engine", methods = ['GET'])
+@GRADIENT_BOOSTED_HEALTH_ENGINE.route("/", methods = ['GET'])
 def redirect():
-    'Incorrect usage. Correct format: url/ai-health-engine?args'
-    return
+    return 'Incorrect usage. Correct format: url/ai-health-engine?args'
 
 @GRADIENT_BOOSTED_HEALTH_ENGINE.route("/ai-health-engine", methods = ["GET"])
 def run_engine():
-    METRICS = request.args
+    print('REQUEST MADE')
+    METRICS = dict(request.args)
     #Generate score
-    score = get_avg_model_score
+    score = get_avg_model_score(METRICS)
     recommendations = compute_recommendations()
-    return json.dumps({"AVERAGE_SCORE": {score}, "TOP_3_METRICS":{recommendations}})
+    print(score)
+    print(recommendations)
+    return json.dumps({"AVERAGE_SCORE": {score[0]}, "TOP_3_METRICS":{recommendations}})
 
 if __name__ == '__main__':
     from waitress import serve
