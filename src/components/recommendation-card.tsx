@@ -8,6 +8,7 @@ import { cx } from '~/utils/style'
 import useAnimationFrame from 'use-animation-frame'
 import { motion } from 'framer-motion'
 import { getTagColors } from '~/utils/tag'
+import { TbDots } from 'react-icons/tb'
 
 export function RecommendationCard({ title, subtitle, imageUrl }: { title: string, subtitle: string, imageUrl: string }) {
 	return (
@@ -78,12 +79,12 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 				}} />
 
 				<div className='relative'>
-					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col flex-1', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
+					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col flex-1 gap-0.5', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
 						<span className='font-medium'>
 							{todo.title}
 						</span>
-						<div className=''>
-							<Tag size='lg' style={{ background: `linear-gradient(to right, ${getTagColors(todo.tag)[0]}, ${getTagColors(todo.tag)[1]})` }} borderRadius='full'>
+						<div>
+							<Tag size='md' style={{ background: `linear-gradient(to right, ${getTagColors(todo.tag)[0]}, ${getTagColors(todo.tag)[1]})` }} borderRadius='full'>
 								<TagLabel className='text-white'>{todo.tag}</TagLabel>
 							</Tag>
 						</div>
@@ -103,6 +104,11 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 						</motion.div>
 					</div>
 				</div>
+
+				<Box className='rounded-sm flex flex-col items-center justify-center self-center min-h-[2rem] min-w-[2rem]' borderWidth={1} shadow='md'>
+					<TbDots />
+				</Box>
+
 			</Box>
 		</motion.div>
 	)
@@ -112,8 +118,8 @@ export function RecommendationTodos() {
 	const todos = useDashboardStore.use.todos()
 
 	return (
-		<motion.div initial={{ opacity: 0, marginLeft: 10 }} animate={{ opacity: 1, marginLeft: 0 }} transition={{ duration: 0.5 }}>
-			<div className='text-xl font-bold mt-[1.5rem] mb-5'>Personal Recommendations</div>
+		<motion.div initial={{ opacity: 0, marginLeft: 10 }} animate={{ opacity: 1, marginLeft: 0 }} transition={{ duration: 0.5 }} className='pr-5'>
+			<div className='text-xl font-bold mt-[1.5rem] mb-3'>Personal Recommendations</div>
 			<div className='flex flex-col gap-5'>
 				{todos.map((todo) => {
 					return (

@@ -1,11 +1,11 @@
 import { NextPage } from "next";
-import { ReactElement, useState } from "react";
-import { MdDashboard, MdNotificationsActive } from 'react-icons/md'
+import { ReactElement } from "react";
+import { MdDashboard } from 'react-icons/md'
 import { BsShieldCheck, BsPersonFill, BsChevronDown } from 'react-icons/bs'
 import { IoMdSettings } from 'react-icons/io'
 import { RiBarChart2Fill } from 'react-icons/ri'
 import { FaHistory } from 'react-icons/fa'
-import { InputGroup, InputLeftElement, Input, Button, Avatar, WrapItem, Box, MenuButton, Menu, MenuItem, MenuList, useStatStyles, } from '@chakra-ui/react'
+import { InputGroup, InputLeftElement, Input, Button, Avatar, Box, MenuButton, Menu, MenuItem, MenuList } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 import dynamic from 'next/dynamic'
 import RecommendationsSection from "~/components/sections/recommendations";
@@ -14,18 +14,19 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import { useDashboardStore } from "~/stores/dashboard";
 import { motion } from 'framer-motion'
 import HealthTipsSection from "~/components/sections/health-tips";
+import HealthHistorySection from "~/components/sections/health-history";
 
-const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
-	return (
-		<div className="flex flex-row group">
-			<div className='flex flex-row items-center gap-2 pl-5 pr-14 py-3 text-gray-500 group-hover:bg-[rgb(255,253,252)] cursor-pointer flex-1 transition-all'>
-				<span className='text-lg'>{icon}</span>
-				<span className='text-xs font-bold'>{text}</span>
-			</div>
-			<span className='opacity-0 group-hover:opacity-100 w-1 self-stretch bg-[rgb(103,192,205)] transition-all'></span>
-		</div>
-	)
-}
+// const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
+// 	return (
+// 		<div className="flex flex-row group">
+// 			<div className='flex flex-row items-center gap-2 pl-5 pr-14 py-3 text-gray-500 group-hover:bg-[rgb(255,253,252)] cursor-pointer flex-1 transition-all'>
+// 				<span className='text-lg'>{icon}</span>
+// 				<span className='text-xs font-bold'>{text}</span>
+// 			</div>
+// 			<span className='opacity-0 group-hover:opacity-100 w-1 self-stretch bg-[rgb(103,192,205)] transition-all'></span>
+// 		</div>
+// 	)
+// }
 
 const SearchBar = () => {
 	const searchQuery = useDashboardStore.use.searchQuery();
@@ -45,17 +46,18 @@ const SearchBar = () => {
 
 const Sidebar = () => {
 	return (
-		<div className='w-[200px] flex  self-stretch flex-col bg-[rgb(249,245,239)]'>
-			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
-				<div className='w-full text-2xl flex flex-row items-center gap-2 pl-5 pt-5 pb-5 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-2xl'>HealthApp</div>
-				<div className="flex flex-col gap-2">
+		<div className='w-[300px] flex self-stretch flex-col bg-[rgb(249,245,239)] items-stretch p-4'>
+			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }} className='flex flex-col'>
+				<div className='text-2xl flex flex-row items-center gap-2 mb-4 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-4xl  [text-shadow:0_4px_8px_#FEC93A80] self-center'>HealthApp</div>
+				{/* <div className="flex flex-col gap-2">
 					<SidebarTab text='Health' icon={<MdDashboard />} />
 					<SidebarTab text='History' icon={<FaHistory />} />
 					<SidebarTab text='Statistics' icon={<RiBarChart2Fill />} />
 					<SidebarTab text='Settings' icon={<IoMdSettings />} />
 					<SidebarTab text='Profile' icon={<BsPersonFill />} />
 					<SidebarTab text='Support' icon={<BsShieldCheck />} />
-				</div>
+				</div> */}
+				<HealthDiagnosticsSection />
 			</motion.div>
 		</div>
 	)
@@ -113,10 +115,10 @@ const DashboardView = () => {
 
 	return (
 		<div className='flex flex-col'>
-			<div className='grid grid-cols-[1fr,1fr] grid-rows-[max-content,4fr,max-content] p-5'>
+			<div className='grid grid-cols-[600px,auto] grid-rows-[max-content,4fr,max-content] p-5'>
 				<DashboardToolbar />
-				{shouldShowHealthDiagnostics && <HealthDiagnosticsSection />}
 				{shouldShowRecommendations && <RecommendationsSection />}
+				<HealthHistorySection />
 				<HealthTipsSection />
 			</div>
 		</div>

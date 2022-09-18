@@ -17,7 +17,7 @@ export function getTagColors(tag: Tag) {
 		case Tag.nutrition:
 			return ['#006400aa', '#006400'];
 		case Tag.sleep:
-			return ['#301934aa', '#301934'];
+			return ['#6a0dadaa', '#6a0dad'];
 		default:
 			throw new Error(`Tag ${tag} not found.`)
 	}
