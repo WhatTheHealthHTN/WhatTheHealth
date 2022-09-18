@@ -18,7 +18,7 @@ def run_engine():
     #Generate score
     score = get_avg_model_score
     recommendations = compute_recommendations()
-    return json.dumps({"AVERAGE SCORE": {score}, "TOP 3 METRICS":{recommendations}})
+    return json.dumps({"AVERAGE_SCORE": {score}, "TOP_3_METRICS":{recommendations}})
 
 if __name__ == '__main__':
     from waitress import serve
