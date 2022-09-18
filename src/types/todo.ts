@@ -4,4 +4,5 @@ export interface Todo {
 	id: number;
 	title: string
 	tag: Tag
+	photoRequired?: boolean
 }

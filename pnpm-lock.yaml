@@ -43,6 +43,7 @@ specifiers:
   ts-node: ^10.9.1
   typescript: 4.8.3
   use-animation-frame: ^0.1.4
+  use-file-picker: ^1.5.1
   zustand: ^4.1.1
 
 dependencies:
@@ -74,6 +75,7 @@ dependencies:
   tailwind-merge: 1.6.0
   three: 0.144.0
   use-animation-frame: 0.1.4_react@18.2.0
+  use-file-picker: 1.5.1_react@18.2.0
   zustand: 4.1.1_react@18.2.0
 
 devDependencies:
@@ -3150,6 +3152,13 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /file-selector/0.2.4:
+    resolution: {integrity: sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==}
+    engines: {node: '>= 10'}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -4960,6 +4969,16 @@ packages:
       '@types/react': 18.0.20
       react: 18.2.0
       tslib: 2.4.0
+    dev: false
+
+  /use-file-picker/1.5.1_react@18.2.0:
+    resolution: {integrity: sha512-mKkoEX1Iw8SufkLYEvwGI+faT9LyT58vWY1GxdxNpxe2Z5bzaQ6GXNYADrPIbUsg1TJy67VsVSIafrqx4yqbBg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      file-selector: 0.2.4
+      react: 18.2.0
     dev: false
 
   /use-sidecar/1.1.2_w5j4k42lgipnm43s3brx6h3c34:
