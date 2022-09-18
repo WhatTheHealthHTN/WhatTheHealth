@@ -15,7 +15,8 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		{
 			id: 1,
 			tag: Tag.exercise,
-			title: 'Get more exercise Get more exercise Get more exercise'
+			title: 'Get more exercise Get more exercise Get more exercise',
+			photoRequired: true
 		},
 		{
 			id: 2,
