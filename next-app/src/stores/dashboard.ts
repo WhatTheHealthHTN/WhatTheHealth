@@ -61,7 +61,7 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		},
 		{
 			id: 2,
-			tag: Tag.nutrition,
+			tag: Tag.sleep,
 			title: 'Aim to increase your percentage of sleep that is REM from 17% to 22.5%.'
 
 		},
