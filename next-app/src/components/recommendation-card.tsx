@@ -148,7 +148,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 					</div>
 				</div>
 
-				<Box className='rounded-sm flex flex-col items-center justify-center self-center min-h-[2rem] min-w-[2rem]' borderWidth={1} shadow='md'>
+				<Box className='rounded-sm flex flex-col items-center justify-center self-center min-h-[2rem] min-w-[2rem] cursor-pointer hover:bg-gray-100 transition-colors' borderWidth={1} shadow='md'>
 					<TbDots />
 				</Box>
 
