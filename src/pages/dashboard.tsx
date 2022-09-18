@@ -110,13 +110,13 @@ const DashboardView = () => {
 		<div className='flex flex-col'>
 			<div className='p-5'>
 				<DashboardToolbar />
-				<HealthTipsSection />
+				<RecommendationsSection />
 				<div className='flex flex-row'>
 					<div className='flex flex-col'>
 						<HealthHistorySection />
 						<MedicationsSection />
 					</div>
-					<RecommendationsSection />
+					<HealthTipsSection />
 				</div>
 			</div>
 		</div>

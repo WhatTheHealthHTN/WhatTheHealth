@@ -61,13 +61,13 @@ export function RecommendationTodo({ todo, index }: { todo: Todo, index: number 
 	const completed = (timeElapsed - 500) / threeSeconds * 100;
 
 	return (
-		<motion.div initial={{ opacity: 1 }} animate={isDeleting ? { opacity: 0, marginLeft: -10 } : {}} transition={{ duration: 0.5, delay: index }}>
+		<motion.div initial={{ opacity: 1 }} animate={isDeleting ? { opacity: 0, marginTop: -10 } : {}} transition={{ duration: 0.5, delay: index }}>
 			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')} shadow='md'>
 
 				{isRecalculating && (
 					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[10px]'>
 						<Spinner />
-						<div>Recalculating health scores...</div>
+						<div className='text-sm'>Recalculating health scores...</div>
 					</div>
 				)}
 
@@ -78,14 +78,14 @@ export function RecommendationTodo({ todo, index }: { todo: Todo, index: number 
 					})
 				}} />
 
-				<div className='relative'>
-					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-row flex-1 gap-0.5 w-full items-center', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
+				<div className='relative max-w-4xl'>
+					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col items-start flex-1 h-full gap-0.5 w-full p-1', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
 						<span className='font-medium'>
 							{todo.title}
 						</span>
 						<div className='flex-1'></div>
 						<div className='mt-0.5'>
-							<Tag size='md' pl={4} style={{ background: getTagColors(todo.tag)[0] }} borderRadius='full'>
+							<Tag size='md' style={{ background: getTagColors(todo.tag)[0] }} borderRadius='full'>
 								<TagLabel className='text-white'>{todo.tag}</TagLabel>
 							</Tag>
 						</div>
@@ -98,7 +98,7 @@ export function RecommendationTodo({ todo, index }: { todo: Todo, index: number 
 								<span className='font-medium flex flex-row items-center gap-2'>
 									Task completed! <span className='text-xl'>🎉</span>
 								</span>
-								<div className='mb-2 text-gray-500'>Made a mistake? You have <span className='font-bold'>{Math.ceil((3 - ((timeElapsed - 500) / 1000)))}s</span> to undo the action before the task disappears from the list.</div>
+								<div className='mb-2 text-gray-500'>Made a mistake? You have <span className='font-bold'>{Math.ceil((3 - ((timeElapsed - 500) / 1000)))}s</span> to undo the completion.</div>
 								<Progress value={completed} rounded='md' height='7px' />
 							</div>
 						</motion.div>
@@ -118,12 +118,14 @@ export function RecommendationTodos() {
 	const todos = useDashboardStore.use.todos()
 
 	return (
-		<motion.div initial={{ opacity: 0, marginLeft: 10 }} animate={{ opacity: 1, marginLeft: 0 }} transition={{ duration: 0.5 }} className='pr-5'>
+		<motion.div className='pr-5'>
 			<div className='text-xl font-bold mt-[1.5rem] mb-3'>Personal Recommendations</div>
-			<div className='flex flex-col gap-5'>
+			<div className='flex flex-row gap-5'>
 				{todos.map((todo, index) => {
 					return (
-						<RecommendationTodo index={index} key={todo.id} todo={todo} />
+						<motion.div key={todo.id} initial={{ opacity: 0, marginTop: -10 }} animate={{ opacity: 1, marginTop: 0 }} transition={{ duration: 0.5, delay: index / 5 }}>
+							<RecommendationTodo index={index} todo={todo} />
+						</motion.div>
 					)
 				})}
 			</div>
