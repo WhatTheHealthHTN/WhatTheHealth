@@ -24,7 +24,7 @@ export default function HealthTipsSection() {
 			<div className='flex flex-col gap-4 items-stretch'>
 				{healthTips.map((healthTip, i) => {
 					return (
-						<motion.div key={i} initial={{ opacity: 0, marginRight: -10 }} animate={{ opacity: 1, marginRight: 0 }} transition={{ duration: 0.5, delay: i / 5 }} className='flex flex-col gap-4 flex-1 rounded-2xl shadow-md p-5 border'>
+						<motion.div key={i} initial={{ opacity: 0, right: -10 }} animate={{ opacity: 1, right: 0 }} transition={{ duration: 0.5, delay: i / 5 }} className='relative flex flex-col gap-4 flex-1 rounded-2xl shadow-md p-5 border'>
 							<div className='font-medium'>
 								{healthTip.title}
 							</div>
