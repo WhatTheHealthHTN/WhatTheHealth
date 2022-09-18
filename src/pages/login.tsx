@@ -9,9 +9,9 @@ export default function LoginPage() {
 				<div className='from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-6xl mb-2 min-h-[70px] text-center'>Login</div>
 				<FormControl className='flex flex-col'>
 					<FormLabel>Email address</FormLabel>
-					<Input type='email' />
+					<Input value={'mainiumesh@gmail.com'} className='-mt-2 mb-4' type='email' />
 					<FormLabel>Password</FormLabel>
-					<Input type='password' />
+					<Input type='password' value='Umesh123Maini' className='-mt-2 mb-4' />
 					<Link href='/dashboard'>
 						<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg mx-auto mt-6 self-center flex flex-row items-center gap-2'>Enter HealthApp<FaArrowRight /></button>
 					</Link>

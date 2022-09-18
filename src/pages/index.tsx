@@ -39,7 +39,7 @@ const Home: NextPage = () => {
 			</motion.div>
 
 			<motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5, ease: 'circOut' }} className='flex flex-col items-center'>
-				<Link href='/dashboard'>
+				<Link href='/login'>
 					<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg'>Get Started</button>
 				</Link>
 			</motion.div>
