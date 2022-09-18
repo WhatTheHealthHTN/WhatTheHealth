@@ -1,10 +1,12 @@
 from flask import Flask, request
+from flask_cors import CORS
 import xgboost as xgb
 import pandas as pd
 import json
 from GENERATOR_XGBOOST import *
 
 GRADIENT_BOOSTED_HEALTH_ENGINE = Flask(__name__)
+CORS(GRADIENT_BOOSTED_HEALTH_ENGINE)
 intialize_trees()
 
 @GRADIENT_BOOSTED_HEALTH_ENGINE.route("/", methods = ['GET'])

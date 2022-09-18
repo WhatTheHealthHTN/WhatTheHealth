@@ -1,10 +1,27 @@
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { PieChart, Pie, Cell } from "recharts";
+import { useDashboardStore } from "~/stores/dashboard";
 
 export function HealthPieChart({ value }: { value: number }) {
+	const fetchScore = useDashboardStore.use.fetchScore()
+	const getOverallScore = useDashboardStore.use.getOverallScore();
+	const scores = useDashboardStore.use.scores();
+	const [initialized, setInitialized] = useState(false)
+
+	useEffect(() => {
+		setInitialized(true)
+	}, [])
+
+	useEffect(() => {
+		(async () => {
+			await fetchScore()
+		})();
+	}, [fetchScore])
+
 	const data = [
-		{ value: 92 },
-		{ value: 100 - 92, color: 'transparent' }
+		{ value: getOverallScore() },
+		{ value: 100 - getOverallScore(), color: 'transparent' }
 	]
 
 	return (
@@ -34,13 +51,13 @@ export function HealthPieChart({ value }: { value: number }) {
 					</Pie>
 				</PieChart>
 
-				<CountUp
+				{initialized ? <div className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'>{getOverallScore()}</div> : <CountUp
 					className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'
 					useEasing={true}
 					start={0}
-					end={92}
-					duration={1.5}
-				/>
+					end={getOverallScore()}
+					duration={initialized ? 0 : 1.5}
+				/>}
 			</div>
 		</div>
 	)

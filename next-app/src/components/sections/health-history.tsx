@@ -5,39 +5,35 @@ import { getTagColors, Tag } from '~/utils/tag'
 const historyData = [
 	{
 		date: '2022-09-14',
-		blood: 82,
-		pollution: 77,
-		exercise: 66,
-		nutrition: 71,
+		blood: 62,
+		environment: 80,
+		exercise: 75,
+		nutrition: 84,
 		sleep: 71,
-		overall: 73,
 	},
 	{
 		date: '2022-09-15',
-		blood: 83,
-		pollution: 74,
-		exercise: 67,
-		nutrition: 72,
-		sleep: 73,
-		overall: 74,
+		blood: 64,
+		environment: 83,
+		exercise: 82,
+		nutrition: 86,
+		sleep: 75,
 	},
 	{
 		date: '2022-09-16',
-		blood: 80,
-		pollution: 75,
-		exercise: 63,
-		nutrition: 71,
-		sleep: 75,
-		overall: 75,
+		blood: 66,
+		environment: 81,
+		exercise: 84,
+		nutrition: 92,
+		sleep: 79,
 	},
 	{
 		date: '2022-09-17',
-		blood: 88,
-		pollution: 72,
-		exercise: 60,
-		nutrition: 75,
-		sleep: 80,
-		overall: 77,
+		blood: 68,
+		environment: 82,
+		exercise: 85,
+		nutrition: 91,
+		sleep: 90,
 	}
 ]
 
@@ -54,7 +50,7 @@ const HealthHistorySection = () => {
 				<Line type="monotone" dataKey="blood" stroke={getTagColors(Tag.blood)[0]} />
 				<Line type="monotone" dataKey="exercise" stroke={getTagColors(Tag.exercise)[0]} />
 				<Line type="monotone" dataKey="nutrition" stroke={getTagColors(Tag.nutrition)[0]} />
-				<Line type="monotone" dataKey="pollution" stroke={getTagColors(Tag.pollution)[0]} />
+				<Line type="monotone" dataKey="environment" stroke={getTagColors(Tag.environment)[0]} />
 				<Line type="monotone" dataKey="sleep" stroke={getTagColors(Tag.sleep)[0]} />
 			</LineChart>
 		</Box>

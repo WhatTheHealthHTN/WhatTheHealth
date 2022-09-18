@@ -36,16 +36,20 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	const [timeElapsed, setTimeElapsed] = useState(0)
 	const deleteTodo = useDashboardStore.use.deleteTodo()
 	const [isUploadPhotoModalVisible, setIsUploadPhotoModalVisible] = useState(false)
+	const updateScores = useDashboardStore.use.updateScores()
+	const fetchScore = useDashboardStore.use.fetchScore()
+	const scores = useDashboardStore.use.scores()
 
 	const threeSeconds = 3 * 1000;
 
 	useEffect(() => {
 		if (isDeleting) {
 			setTimeout(() => {
+				fetchScore()
 				deleteTodo(todo.id)
 			}, 500)
 		}
-	}, [isDeleting, deleteTodo, todo.id])
+	}, [isDeleting, deleteTodo, todo.id, updateScores, scores.blood])
 
 	useAnimationFrame(() => {
 		if (checkedData.checked) {
@@ -104,9 +108,14 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')} shadow='md'>
 
 				{isRecalculating && (
-					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 right-[30px]'>
+					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[0px] right-[30px]'>
 						<Spinner />
-						<div className='text-sm'>Recalculating health scores...</div>
+						<div className='flex flex-col gap-2'>
+							{todo.photoRequired &&
+								<span>Task completed! <span className='text-xl'>🎉</span></span>
+							}
+							<div className='text-sm'>Recalculating health scores...</div>
+						</div>
 					</div>
 				)}
 
@@ -123,7 +132,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 
 				<div className='relative max-w-4xl'>
 					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col items-start flex-1 h-full gap-0.5 w-full p-1', checkedData.checked || isRecalculating ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked || isRecalculating ? { opacity: 0, left: -5 } : {}} transition={todo.photoRequired ? { delay: 0, duration: 0 } : { delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
-						<span className='font-medium'>
+						<span className='font-medium text-sm'>
 							{todo.title}
 						</span>
 						<div className='flex-1'></div>
@@ -148,7 +157,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 					</div>
 				</div>
 
-				<Box className='rounded-sm flex flex-col items-center justify-center self-center min-h-[2rem] min-w-[2rem]' borderWidth={1} shadow='md'>
+				<Box className='rounded-sm flex flex-col items-center justify-center self-center min-h-[2rem] min-w-[2rem] cursor-pointer hover:bg-gray-100 transition-colors' borderWidth={1} shadow='md'>
 					<TbDots />
 				</Box>
 
