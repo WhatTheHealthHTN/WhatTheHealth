@@ -26,7 +26,6 @@ interface DashboardStoreState {
 	todos: Todo[]
 	top3Metrics: Metric[]
 	scores: {
-		overall: number;
 		[Tag.blood]: number;
 		[Tag.environment]: number;
 		[Tag.exercise]: number;
@@ -35,18 +34,22 @@ interface DashboardStoreState {
 	}
 	deleteTodo: (id: number) => void;
 	fetchScore: () => Promise<any>
-	updateScores: (args: { overall?: number, blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) => void
+	getOverallScore(): number
+	updateScores: (args: { blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) => void
 }
 
-export const useDashboardStore = createSelectors(create<DashboardStoreState>((set) => ({
+export const useDashboardStore = createSelectors(create<DashboardStoreState>((set, get) => ({
 	searchQuery: '',
 	scores: {
-		overall: 80,
 		[Tag.blood]: 68,
 		[Tag.environment]: 82,
 		[Tag.exercise]: 85,
 		[Tag.nutrition]: 91,
 		[Tag.sleep]: 90,
+	},
+	getOverallScore() {
+		const state = get()
+		return Math.round((state.scores.environment + state.scores.exercise + state.scores.nutrition + state.scores.sleep + state.scores.blood) / 5)
 	},
 	top3Metrics: [],
 	todos: [
@@ -73,11 +76,10 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 			return { todos: state.todos.filter(todo => todo.id !== id) }
 		})
 	},
-	updateScores({ overall, blood, environment, exercise, nutrition, sleep }: { overall?: number, blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) {
+	updateScores({ blood, environment, exercise, nutrition, sleep }: { blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) {
 		set((state) => ({
 			scores: {
 				...state.scores,
-				...(overall && { overall }),
 				...(exercise && { exercise }),
 				...(nutrition && { nutrition }),
 				...(blood && { blood }),

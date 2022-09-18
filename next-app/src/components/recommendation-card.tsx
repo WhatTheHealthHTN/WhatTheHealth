@@ -44,11 +44,11 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	useEffect(() => {
 		if (isDeleting) {
 			setTimeout(() => {
-				updateScores({ blood: scores.blood + 3, overall: scores.overall + 1 });
+				updateScores({ blood: scores.blood + 6 });
 				deleteTodo(todo.id)
 			}, 500)
 		}
-	}, [isDeleting, deleteTodo, todo.id, updateScores, scores.blood, scores.overall])
+	}, [isDeleting, deleteTodo, todo.id, updateScores, scores.blood])
 
 	useAnimationFrame(() => {
 		if (checkedData.checked) {
@@ -107,9 +107,14 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')} shadow='md'>
 
 				{isRecalculating && (
-					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 right-[30px]'>
+					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[0px] right-[30px]'>
 						<Spinner />
-						<div className='text-sm'>Recalculating health scores...</div>
+						<div className='flex flex-col gap-2'>
+							{todo.photoRequired &&
+								<span>Task completed! <span className='text-xl'>🎉</span></span>
+							}
+							<div className='text-sm'>Recalculating health scores...</div>
+						</div>
 					</div>
 				)}
 

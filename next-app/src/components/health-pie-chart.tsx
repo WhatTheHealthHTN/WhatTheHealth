@@ -5,6 +5,7 @@ import { useDashboardStore } from "~/stores/dashboard";
 
 export function HealthPieChart({ value }: { value: number }) {
 	const fetchScore = useDashboardStore.use.fetchScore()
+	const getOverallScore = useDashboardStore.use.getOverallScore();
 	const scores = useDashboardStore.use.scores();
 	const [initialized, setInitialized] = useState(false)
 
@@ -19,8 +20,8 @@ export function HealthPieChart({ value }: { value: number }) {
 	}, [fetchScore])
 
 	const data = [
-		{ value: scores.overall },
-		{ value: 100 - scores.overall, color: 'transparent' }
+		{ value: getOverallScore() },
+		{ value: 100 - getOverallScore(), color: 'transparent' }
 	]
 
 	return (
@@ -50,11 +51,11 @@ export function HealthPieChart({ value }: { value: number }) {
 					</Pie>
 				</PieChart>
 
-				{initialized ? <div className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'>{scores.overall}</div> : <CountUp
+				{initialized ? <div className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'>{getOverallScore()}</div> : <CountUp
 					className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'
 					useEasing={true}
 					start={0}
-					end={scores.overall}
+					end={getOverallScore()}
 					duration={initialized ? 0 : 1.5}
 				/>}
 			</div>
