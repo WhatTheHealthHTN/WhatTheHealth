@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react'
 import { HealthPieChart } from "~/components/health-pie-chart";
 import { HealthLineBar } from "~/components/health-line-bar";
 import { getTagColors, Tag } from '~/utils/tag';
-import { useDashboardStore } from '~/stores/dashboard.js';
+import { useDashboardStore } from '~/stores/dashboard';
 
 const HealthDiagnosticsSection = () => {
 	const scores = useDashboardStore.use.scores()
