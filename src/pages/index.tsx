@@ -7,7 +7,7 @@ import Script from "next/script";
 const HomeHeader = () => {
 	return (
 		<motion.div initial={{ marginTop: -10, opacity: 0 }} animate={{ opacity: 1, marginTop: 0 }} className='flex flex-row py-4 px-8 gap-2 items-center'>
-			<div className='from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-2xl'>HealthApp</div>
+			<div className='from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-2xl'>What the Health</div>
 			<div className='flex-1'></div>
 			<Link href='/login'>
 				<Button bgColor='#E338F9' color='white' _hover={{ backgroundColor: '#E338F9AA' }}>Login</Button>
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
 				, finally.
 			</motion.div>
 			<motion.div initial={{ y: 0, opacity: 0 }} animate={{ opacity: 1, y: 10 }} transition={{ delay: 0.2, duration: 0.5 }} className='max-w-2xl mt-1 text-center text-gray-500 font-medium mx-auto text-lg px-4 gap-4 mb-6'>
-				HealthApp gathers all your data in one place, using <span className='font-bold bg-gradient-to-r from-[#469aea] to-[#b941ff] text-transparent bg-clip-text text-lg'>Artificial&nbsp;Intelligence</span> to provide actionable recommendations to improve your overall health.
+				What the Health gathers all your data in one place, using <span className='font-bold bg-gradient-to-r from-[#469aea] to-[#b941ff] text-transparent bg-clip-text text-lg'>Artificial&nbsp;Intelligence</span> to provide actionable recommendations to improve your overall health.
 			</motion.div>
 
 			<motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7, duration: 0.5, ease: 'circOut' }} className='flex flex-col items-center'>

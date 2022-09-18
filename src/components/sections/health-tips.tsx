@@ -11,8 +11,8 @@ const morningHealthTips = [
 		description: 'Drink 8 ounces of water as the first liquid you consume in the morning'
 	},
 	{
-		title: 'Health Tip #3',
-		description: 'Health Tip #3 Description'
+		title: 'Morning Protein',
+		description: 'Aim to achieve the ideal amount of 30g of protein at breakfast, as opposed to a carb-heavy one.'
 	},
 ]
 

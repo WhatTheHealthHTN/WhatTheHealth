@@ -13,7 +13,7 @@ export default function LoginPage() {
 					<FormLabel>Password</FormLabel>
 					<Input type='password' value='Umesh123Maini' className='-mt-2 mb-4' />
 					<Link href='/dashboard'>
-						<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg mx-auto mt-6 self-center flex flex-row items-center gap-2'>Enter HealthApp<FaArrowRight /></button>
+						<button className='text-white rounded-md px-4 py-2 font-bold bg-gradient-to-r from-[#E338F9] to-[#FEC93A] hover:opacity-70 transition-all text-lg mx-auto mt-6 self-center flex flex-row items-center gap-2'>Enter What the Health <FaArrowRight /></button>
 					</Link>
 				</FormControl>
 			</div>

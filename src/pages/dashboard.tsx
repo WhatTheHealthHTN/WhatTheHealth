@@ -45,7 +45,7 @@ const Sidebar = () => {
 	return (
 		<div className='min-w-[300px] flex self-stretch flex-col bg-[rgb(249,245,239)] items-stretch p-4'>
 			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }} className='flex flex-col'>
-				<div className='text-2xl flex flex-row items-center gap-2 mb-4 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-4xl self-center'>HealthApp</div>
+				<div className='text-2xl flex flex-row items-center gap-2 mb-4 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-4xl self-center'>What the Health</div>
 				{/* <div className="flex flex-col gap-2">
 					<SidebarTab text='Health' icon={<MdDashboard />} />
 					<SidebarTab text='History' icon={<FaHistory />} />
