@@ -11,6 +11,7 @@ import { motion } from 'framer-motion'
 import HealthTipsSection from "~/components/sections/health-tips";
 import HealthHistorySection from "~/components/sections/health-history";
 import MedicationsSection from "~/components/sections/medications";
+import Link from "next/link";
 
 // const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 // 	return (
@@ -89,7 +90,11 @@ const DashboardToolbar = () => {
 					</div>
 				</MenuButton>
 				<MenuList>
-					<MenuItem><span className='text-red-400'>Logout</span></MenuItem>
+					<MenuItem>
+						<Link href='/login'>
+							<a className='text-red-400'>Logout</a>
+						</Link>
+					</MenuItem>
 				</MenuList>
 			</Menu>
 		</div>
