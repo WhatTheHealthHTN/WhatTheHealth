@@ -21,7 +21,7 @@ export function RecommendationCard({ title, subtitle, imageUrl }: { title: strin
 	)
 }
 
-export function RecommendationTodo({ todo }: { todo: Todo }) {
+export function RecommendationTodo({ todo, index }: { todo: Todo, index: number }) {
 	const [checkedData, setCheckedData] = useState({
 		checked: false,
 		timestamp: 0
@@ -61,7 +61,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 	const completed = (timeElapsed - 500) / threeSeconds * 100;
 
 	return (
-		<motion.div initial={{ opacity: 1 }} animate={isDeleting ? { opacity: 0, marginLeft: -10 } : {}} transition={{ duration: 0.5 }}>
+		<motion.div initial={{ opacity: 1 }} animate={isDeleting ? { opacity: 0, marginLeft: -10 } : {}} transition={{ duration: 0.5, delay: index }}>
 			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')} shadow='md'>
 
 				{isRecalculating && (
@@ -121,9 +121,9 @@ export function RecommendationTodos() {
 		<motion.div initial={{ opacity: 0, marginLeft: 10 }} animate={{ opacity: 1, marginLeft: 0 }} transition={{ duration: 0.5 }} className='pr-5'>
 			<div className='text-xl font-bold mt-[1.5rem] mb-3'>Personal Recommendations</div>
 			<div className='flex flex-col gap-5'>
-				{todos.map((todo) => {
+				{todos.map((todo, index) => {
 					return (
-						<RecommendationTodo key={todo.id} todo={todo} />
+						<RecommendationTodo index={index} key={todo.id} todo={todo} />
 					)
 				})}
 			</div>
