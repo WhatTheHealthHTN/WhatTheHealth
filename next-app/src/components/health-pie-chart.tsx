@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { PieChart, Pie, Cell } from "recharts";
 import { useDashboardStore } from "~/stores/dashboard";
@@ -6,6 +6,11 @@ import { useDashboardStore } from "~/stores/dashboard";
 export function HealthPieChart({ value }: { value: number }) {
 	const fetchScore = useDashboardStore.use.fetchScore()
 	const scores = useDashboardStore.use.scores();
+	const [initialized, setInitialized] = useState(false)
+
+	useEffect(() => {
+		setInitialized(true)
+	}, [])
 
 	useEffect(() => {
 		(async () => {
@@ -45,13 +50,13 @@ export function HealthPieChart({ value }: { value: number }) {
 					</Pie>
 				</PieChart>
 
-				<CountUp
+				{initialized ? <div className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'>{scores.overall}</div> : <CountUp
 					className='absolute text-4xl from-[#ffd580] to-[#ff8c00] bg-clip-text text-transparent bg-gradient-to-r font-bold'
 					useEasing={true}
 					start={0}
-					end={92}
-					duration={1.5}
-				/>
+					end={scores.overall}
+					duration={initialized ? 0 : 1.5}
+				/>}
 			</div>
 		</div>
 	)

@@ -36,16 +36,19 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	const [timeElapsed, setTimeElapsed] = useState(0)
 	const deleteTodo = useDashboardStore.use.deleteTodo()
 	const [isUploadPhotoModalVisible, setIsUploadPhotoModalVisible] = useState(false)
+	const updateScores = useDashboardStore.use.updateScores()
+	const scores = useDashboardStore.use.scores()
 
 	const threeSeconds = 3 * 1000;
 
 	useEffect(() => {
 		if (isDeleting) {
 			setTimeout(() => {
+				updateScores({ blood: scores.blood + 3, overall: scores.overall + 1 });
 				deleteTodo(todo.id)
 			}, 500)
 		}
-	}, [isDeleting, deleteTodo, todo.id])
+	}, [isDeleting, deleteTodo, todo.id, updateScores, scores.blood, scores.overall])
 
 	useAnimationFrame(() => {
 		if (checkedData.checked) {
@@ -123,7 +126,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 
 				<div className='relative max-w-4xl'>
 					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col items-start flex-1 h-full gap-0.5 w-full p-1', checkedData.checked || isRecalculating ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked || isRecalculating ? { opacity: 0, left: -5 } : {}} transition={todo.photoRequired ? { delay: 0, duration: 0 } : { delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
-						<span className='font-medium'>
+						<span className='font-medium text-sm'>
 							{todo.title}
 						</span>
 						<div className='flex-1'></div>

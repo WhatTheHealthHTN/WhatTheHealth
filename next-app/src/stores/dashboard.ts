@@ -41,12 +41,12 @@ interface DashboardStoreState {
 export const useDashboardStore = createSelectors(create<DashboardStoreState>((set) => ({
 	searchQuery: '',
 	scores: {
-		overall: 0,
-		[Tag.blood]: 0,
-		[Tag.environment]: 0,
-		[Tag.exercise]: 0,
-		[Tag.nutrition]: 0,
-		[Tag.sleep]: 0,
+		overall: 80,
+		[Tag.blood]: 68,
+		[Tag.environment]: 82,
+		[Tag.exercise]: 85,
+		[Tag.nutrition]: 91,
+		[Tag.sleep]: 90,
 	},
 	top3Metrics: [],
 	todos: [
@@ -74,15 +74,15 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		})
 	},
 	updateScores({ overall, blood, environment, exercise, nutrition, sleep }: { overall?: number, blood?: number, environment?: number, exercise?: number, nutrition?: number, sleep?: number }) {
-		// @ts-expect-error: over
 		set((state) => ({
 			scores: {
 				...state.scores,
-				overall,
-				blood,
-				environment,
-				nutrition,
-				sleep
+				...(overall && { overall }),
+				...(exercise && { exercise }),
+				...(nutrition && { nutrition }),
+				...(blood && { blood }),
+				...(environment && { environment }),
+				...(sleep && { sleep }),
 			}
 		}))
 	},
@@ -101,13 +101,13 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 
 		url += searchParams.join('&')
 
-		const response = await ky(url);
-		const result = await response.json<any>()
+		// const response = await ky(url);
+		// const result = await response.json<any>()
 
-		const overallScore = result['OVERALL_SCORE']
-		const top3Metrics = result['TOP_3_METRICS']
-		set(() => ({ overallScore, top3Metrics }))
+		// const overallScore = result['OVERALL_SCORE']
+		// const top3Metrics = result['TOP_3_METRICS']
+		// set(() => ({ overallScore, top3Metrics }))
 
-		return result
+		// return result
 	}
 })))
