@@ -67,8 +67,8 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		},
 		{
 			id: 3,
-			tag: Tag.sleep,
-			title: 'Sleep earlier'
+			tag: Tag.nutrition,
+			title: 'Limit your daily sodium intake from 2456mg down to 2300mg.'
 		}
 	],
 	setSearchQuery: (searchQuery: string) => set({ searchQuery }),
