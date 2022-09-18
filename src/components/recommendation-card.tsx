@@ -67,7 +67,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 				{isRecalculating && (
 					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[10px]'>
 						<Spinner />
-						<div>Recalculating health score...</div>
+						<div>Recalculating health scores...</div>
 					</div>
 				)}
 
@@ -79,7 +79,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 				}} />
 
 				<div className='relative'>
-					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-row flex-1 gap-0.5 w-full', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
+					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-row flex-1 gap-0.5 w-full items-center', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
 						<span className='font-medium'>
 							{todo.title}
 						</span>
@@ -99,7 +99,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 								<span className='font-medium flex flex-row items-center gap-2'>
 									Task completed! <span className='text-xl'>🎉</span>
 								</span>
-								<div className='mb-2 text-gray-500'>You have <span className='font-bold'>{Math.ceil((3 - ((timeElapsed - 500) / 1000)))}s</span> to undo the action before the task disappears from the list.</div>
+								<div className='mb-2 text-gray-500'>Made a mistake? You have <span className='font-bold'>{Math.ceil((3 - ((timeElapsed - 500) / 1000)))}s</span> to undo the action before the task disappears from the list.</div>
 								<Progress value={completed} rounded='md' height='7px' />
 							</div>
 						</motion.div>

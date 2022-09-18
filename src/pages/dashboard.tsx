@@ -15,6 +15,7 @@ import { useDashboardStore } from "~/stores/dashboard";
 import { motion } from 'framer-motion'
 import HealthTipsSection from "~/components/sections/health-tips";
 import HealthHistorySection from "~/components/sections/health-history";
+import MedicationsSection from "~/components/sections/medications";
 
 // const SidebarTab = ({ icon, text }: { icon: ReactElement, text: string }) => {
 // 	return (
@@ -46,9 +47,9 @@ const SearchBar = () => {
 
 const Sidebar = () => {
 	return (
-		<div className='w-[300px] flex self-stretch flex-col bg-[rgb(249,245,239)] items-stretch p-4'>
+		<div className='min-w-[300px] flex self-stretch flex-col bg-[rgb(249,245,239)] items-stretch p-4'>
 			<motion.div initial={{ opacity: 0, marginLeft: '-10px' }} animate={{ marginLeft: 0, opacity: 1 }} transition={{ duration: 0.5 }} className='flex flex-col'>
-				<div className='text-2xl flex flex-row items-center gap-2 mb-4 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-4xl  [text-shadow:0_4px_8px_#FEC93A80] self-center'>HealthApp</div>
+				<div className='text-2xl flex flex-row items-center gap-2 mb-4 from-[#E338F9] to-[#FEC93A] bg-clip-text bg-gradient-to-r text-transparent font-bold text-4xl self-center'>HealthApp</div>
 				{/* <div className="flex flex-col gap-2">
 					<SidebarTab text='Health' icon={<MdDashboard />} />
 					<SidebarTab text='History' icon={<FaHistory />} />
@@ -85,11 +86,11 @@ const DashboardToolbar = () => {
 						<div className='flex flex-row gap-2 items-center'>
 							<Box className='bg-gradient-to-r from-[rgb(238,167,93,0.5)] to-[rgb(238,167,93)] rounded-full flex flex-row items-center justify-center' w={10} h={10}>
 								<Box className='bg-white rounded-full flex flex-row items-center justify-center' h={9} w={9}>
-									<Avatar src='https://bit.ly/prosper-baba' w={8} h={8} />
+									<Avatar src='/user.png' w={8} h={8} />
 								</Box>
 							</Box>
 							<div className='text-sm font-medium'>
-								Leon Si
+								Umesh Maini
 							</div>
 							<BsChevronDown size={10} />
 						</div>
@@ -120,6 +121,7 @@ const DashboardView = () => {
 				{shouldShowRecommendations && <RecommendationsSection />}
 				<HealthHistorySection />
 				<HealthTipsSection />
+				<MedicationsSection />
 			</div>
 		</div>
 	)
