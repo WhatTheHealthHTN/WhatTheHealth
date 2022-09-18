@@ -21,7 +21,7 @@ const HomeHeader = () => {
 const Home: NextPage = () => {
 	return (
 		<div>
-			<canvas id="background" className='absolute -z-1'></canvas>
+			<canvas id="background" className='absolute pointer-events-none -z-1'></canvas>
 			<Script strategy="afterInteractive" src='/threejs.js'></Script>
 			<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 1 }} id='three-container' className='absolute top-[400px] xs:top-[350px] pointer-events-none -z-[1] overflow-hidden max-w-full'></motion.div>
 			<HomeHeader />
