@@ -44,7 +44,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	useEffect(() => {
 		if (isDeleting) {
 			setTimeout(() => {
-				updateScores({ blood: scores.blood + 6 });
+				updateScores({ blood: scores.blood + 10 });
 				deleteTodo(todo.id)
 			}, 500)
 		}
