@@ -90,8 +90,11 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 
 					<ModalFooter className='mr-auto'>
 						<Button disabled={filesContent[0] === undefined} colorScheme='green' mr={3} onClick={() => {
-							setIsRecalculating(true)
 							setIsUploadPhotoModalVisible(false)
+							setCheckedData({
+								checked: true,
+								timestamp: Date.now() - 10_000
+							})
 						}}>
 							Upload
 						</Button>
