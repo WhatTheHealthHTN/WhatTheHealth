@@ -2,7 +2,6 @@ import { Button } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { motion } from 'framer-motion'
 import Link from "next/link";
-import Head from "next/head";
 import Script from "next/script";
 
 const HomeHeader = () => {
