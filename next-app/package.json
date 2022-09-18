@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 3002",
 		"build": "next build",
 		"start": "next start",
 		"export": "next export",
@@ -29,6 +29,8 @@
 		"classnames": "^2.3.2",
 		"com.telerik.plugins.healthkit": "^0.7.0",
 		"framer-motion": "^7.3.5",
+		"ky": "^0.31.3",
+		"ky-universal": "^0.10.1",
 		"next": "12.3.0",
 		"prop-types": "^15.8.1",
 		"react": "18.2.0",

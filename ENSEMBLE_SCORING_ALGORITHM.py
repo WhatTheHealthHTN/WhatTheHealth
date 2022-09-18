@@ -1,28 +1,28 @@
 import pandas as pd
 import xgboost as xgb
 
-DATASETS = {"pollution_gradient_tree": r'DATASETS\POLLUTION\GEOGRAPHY_AIR_QUALITY_DATASET.pkl', 
-            "exercise_gradient_tree": r'DATASETS\EXCERCISE\EXERCISE_DATA.pkl', 
-            "nutrition_gradient_tree" : r'DATASETS\NUTRITION\PREPROCESSED_NUTRITION_MYFITNESS_DATA.pkl', 
-            "sleep_gradient_tree" : r'DATASETS\SLEEP\PREPROCESSED_SLEEP_FITBIT_DATA.pkl', 
+DATASETS = {"pollution_gradient_tree": r'DATASETS\POLLUTION\GEOGRAPHY_AIR_QUALITY_DATASET.pkl',
+            "exercise_gradient_tree": r'DATASETS\EXCERCISE\EXERCISE_DATA.pkl',
+            "nutrition_gradient_tree" : r'DATASETS\NUTRITION\PREPROCESSED_NUTRITION_MYFITNESS_DATA.pkl',
+            "sleep_gradient_tree" : r'DATASETS\SLEEP\PREPROCESSED_SLEEP_FITBIT_DATA.pkl',
             "blood_gradient_tree": r'DATASETS\BLOOD\PREPROCESSED_BLOOD_D1_DATASET.pkl'}
 
 #Load all models (Gradient Boosted Trees) as global varaibles for further use.
 def intialize_trees():
     globals()['pollution_gradient_tree'] = xgb.Booster()
-    globals()['pollution_gradient_tree'].load_model(r'MODELS\GEOGRAPHY_POLLUTION_GRADBOOSTED_MODELS.model')
+    globals()['pollution_gradient_tree'].load_model(r'MODELS/GEOGRAPHY_POLLUTION_GRADBOOSTED_MODELS.model')
 
     globals()['exercise_gradient_tree'] = xgb.Booster()
-    globals()['exercise_gradient_tree'].load_model(r'MODELS\METRICS_EXERCISE_GRADBOOSTED_MODELS[41443].model')
+    globals()['exercise_gradient_tree'].load_model(r'MODELS/METRICS_EXERCISE_GRADBOOSTED_MODELS[41443].model')
 
     globals()['nutrition_gradient_tree'] = xgb.Booster()
-    globals()['nutrition_gradient_tree'].load_model(r'MODELS\METRICS_NUTRITION_GRADBOOSTED_MODELS[63.24].model')
+    globals()['nutrition_gradient_tree'].load_model(r'MODELS/METRICS_NUTRITION_GRADBOOSTED_MODELS[63.24].model')
 
     globals()['sleep_gradient_tree'] = xgb.Booster()
-    globals()['sleep_gradient_tree'].load_model(r'MODELS\METRICS_SLEEP_GRADBOOSTED_MODELS[0.06].model')
+    globals()['sleep_gradient_tree'].load_model(r'MODELS/METRICS_SLEEP_GRADBOOSTED_MODELS[0.06].model')
 
     globals()['blood_gradient_tree'] = xgb.Booster()
-    globals()['blood_gradient_tree'].load_model(r'MODELS\REPORTS_BLOOD_GRADBOOSTED_MODELS[1.5].model')
+    globals()['blood_gradient_tree'].load_model(r'MODELS/REPORTS_BLOOD_GRADBOOSTED_MODELS[1.5].model')
 
 #Function to scale output of a given function
 def scale(value, max, min):

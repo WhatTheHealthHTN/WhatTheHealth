@@ -1,7 +1,9 @@
+import 'ky-universal'
 import create from 'zustand'
 import { Todo } from '~/types/todo'
 import { createSelectors } from '~/utils/store'
 import { Tag } from '~/utils/tag'
+import ky from 'ky'
 
 interface DashboardStoreState {
 	searchQuery: string, setSearchQuery: (searchQuery: string) => void
@@ -34,5 +36,8 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 		set(state => {
 			return { todos: state.todos.filter(todo => todo.id !== id) }
 		})
+	},
+	async fetchScore() {
+		await ky('http://localhost:3000/')
 	}
 })))
