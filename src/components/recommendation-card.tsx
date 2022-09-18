@@ -62,7 +62,7 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 
 	return (
 		<motion.div initial={{ opacity: 1 }} animate={isDeleting ? { opacity: 0, marginLeft: -10 } : {}} transition={{ duration: 0.5 }}>
-			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')}>
+			<Box rounded='3xl' px={5} py={3} borderWidth='1.5px' className={cx('flex flex-row gap-4 items-center transition-colors relative', checkedData.checked ? 'bg-[rgb(250,251,255)]' : '')} shadow='md'>
 
 				{isRecalculating && (
 					<div className='flex flex-row items-center gap-4 text-gray-500 p-4 absolute top-1/2 -translate-y-1/2 left-[10px]'>
@@ -79,12 +79,13 @@ export function RecommendationTodo({ todo }: { todo: Todo }) {
 				}} />
 
 				<div className='relative'>
-					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-col flex-1 gap-0.5', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
+					<motion.div className={cx('absolute -translate-y-1/2 top-1/2 flex flex-row flex-1 gap-0.5 w-full', checkedData.checked ? 'pointer-events-none' : 'pointer-events-auto')} animate={checkedData.checked ? { opacity: 0, left: -5 } : {}} transition={{ delay: checkedData.checked ? 0 : 0.5, duration: checkedData.checked ? 0.5 : 0.2 }}>
 						<span className='font-medium'>
 							{todo.title}
 						</span>
-						<div>
-							<Tag size='md' style={{ background: `linear-gradient(to right, ${getTagColors(todo.tag)[0]}, ${getTagColors(todo.tag)[1]})` }} borderRadius='full'>
+						<div className='flex-1'></div>
+						<div className='mt-0.5'>
+							<Tag size='md' style={{ background: getTagColors(todo.tag)[0] }} borderRadius='full'>
 								<TagLabel className='text-white'>{todo.tag}</TagLabel>
 							</Tag>
 						</div>
