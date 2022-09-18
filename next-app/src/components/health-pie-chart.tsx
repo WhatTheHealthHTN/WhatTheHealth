@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import CountUp from "react-countup";
 import { PieChart, Pie, Cell } from "recharts";
+import { useDashboardStore } from "~/stores/dashboard";
 
 export function HealthPieChart({ value }: { value: number }) {
+	const fetchScore = useDashboardStore.use.fetchScore()
+
+	useEffect(() => {
+		(async () => {
+			await fetchScore()
+		})();
+	}, [fetchScore])
+
 	const data = [
 		{ value: 92 },
 		{ value: 100 - 92, color: 'transparent' }
