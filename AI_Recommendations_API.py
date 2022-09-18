@@ -18,11 +18,14 @@ def run_engine():
     print('REQUEST MADE')
     METRICS = dict(request.args)
     #Generate score
-    score = get_avg_model_score(METRICS)
+    score = get_avg_model_score(METRICS)[0]
+    output_rec = {}
     recommendations = compute_recommendations()
-    print(score)
+    recommendations[0] = output_rec['FIRST_REC']
+    recommendations[1] = output_rec['SECOND_REC']
+    recommendations[2] = output_rec['THIRD_REC']
     print(recommendations)
-    return json.dumps({"AVERAGE_SCORE": {score[0]}, "TOP_3_METRICS":{recommendations}})
+    return json.dumps({"AVERAGE_SCORE": {score}, "TOP_3_METRICS":{output_rec}})
 
 if __name__ == '__main__':
     from waitress import serve

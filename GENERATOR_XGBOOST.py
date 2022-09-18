@@ -42,7 +42,10 @@ def individual_model_score(dataset, model, metrics):
     metrics = list(map(float, metrics))
     columns = data.columns.values.tolist()
     if model == 'sleep_gradient_tree': columns = columns[:4]
-    if model == 'blood_gradient_tree': columns = columns[1:]
+    if model == 'blood_gradient_tree': 
+        columns = columns[1:]
+        columns = columns[:-1]
+        
     else: columns = columns[:-1]
     print(columns)
     print(metrics)
