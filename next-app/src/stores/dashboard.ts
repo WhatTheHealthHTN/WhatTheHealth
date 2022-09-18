@@ -104,13 +104,13 @@ export const useDashboardStore = createSelectors(create<DashboardStoreState>((se
 
 		url += searchParams.join('&')
 
-		// const response = await ky(url);
-		// const result = await response.json<any>()
+		const response = await ky(url);
+		const result = await response.json<any>()
 
-		// const overallScore = result['OVERALL_SCORE']
-		// const top3Metrics = result['TOP_3_METRICS']
-		// set(() => ({ overallScore, top3Metrics }))
+		const scores = result['SCORES']
+		const top3Metrics = result['TOP_3_METRICS']
+		set(() => ({ scores, top3Metrics }))
 
-		// return result
+		return result
 	}
 })))

@@ -37,6 +37,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	const deleteTodo = useDashboardStore.use.deleteTodo()
 	const [isUploadPhotoModalVisible, setIsUploadPhotoModalVisible] = useState(false)
 	const updateScores = useDashboardStore.use.updateScores()
+	const fetchScore = useDashboardStore.use.fetchScore()
 	const scores = useDashboardStore.use.scores()
 
 	const threeSeconds = 3 * 1000;
@@ -44,7 +45,7 @@ export function RecommendationTodo({ todo, index, }: { todo: Todo, index: number
 	useEffect(() => {
 		if (isDeleting) {
 			setTimeout(() => {
-				updateScores({ blood: scores.blood + 10 });
+				fetchScore()
 				deleteTodo(todo.id)
 			}, 500)
 		}
